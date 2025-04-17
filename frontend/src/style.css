@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+.hero {
+  background-image: url('./assets/img/logo_2.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+a {
+  @apply hover:scale-105 hover:cursor-pointer;
+}
+
+button {
+  @apply hover:scale-105 hover:cursor-pointer active:scale-100;
+}
+
+DropdownMenuRadioItem {
+  @apply hover:cursor-pointer;
+}

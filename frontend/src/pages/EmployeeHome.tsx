@@ -1,7 +1,11 @@
 
 const EmployeeHome = () => {
   return (
-    <div>EmployeeHome</div>
+    <div className="w-screen min-h-screen flex flex-col">
+
+
+
+    </div>
   )
 }
 
