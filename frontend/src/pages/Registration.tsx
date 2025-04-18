@@ -16,11 +16,14 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@radix-ui/react-dropdown-menu"
 import { useEffect, useState } from "react"
 import { FaCloudUploadAlt } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
 
 
 const Registration = () => {
 
   const [position, setPosition] = useState("Role at organization")
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("Position changed to: ", position)
@@ -81,7 +84,15 @@ const Registration = () => {
           </section>
 
           <section className="flex flex-col gap-4 p-2 rounded-xl w-full ">
-            <Button className="bg-[#ED8E6B] font-bold"> Send Registration </Button>
+            <Button className="bg-[#ED8E6B] font-bold"
+
+              onClick={() => {
+                alert("Registration sent. You will have access once Admin approves.")
+                navigate('/employee-home')
+              }}>
+              Send Registration
+
+            </Button>
           </section>
 
         </main>

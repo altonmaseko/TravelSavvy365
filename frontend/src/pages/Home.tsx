@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button"
 
 import logo from "@/assets/img/logo.png"
+import { useNavigate } from "react-router-dom"
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="h-screen w-screen  flex flex-col p-4 text-[1.5rem] justify-between bg-[#EDE6F2]">
 
@@ -42,7 +45,7 @@ const Home = () => {
           </section>
 
           <section className="flex flex-row gap-4">
-            <Button className="bg-[#ED8E6B] font-bold"> Register </Button>
+            <Button className="bg-[#ED8E6B] font-bold" onClick={() => navigate('/registration')} > Register  </Button>
             <Button className="bg-[#ED8E6B] font-bold"> Login </Button>
           </section>
         </main>

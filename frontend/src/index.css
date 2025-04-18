@@ -35,7 +35,7 @@ h6 {
 @custom-variant dark (&:is(.dark *));
 
 body {
-  @apply flex flex-col items-center justify-center h-screen bg-gray-100;
+  @apply flex flex-col items-center justify-center min-h-screen bg-gray-100;
 }
 
 @theme inline {
