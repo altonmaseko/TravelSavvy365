@@ -11,12 +11,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+
+
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@radix-ui/react-dropdown-menu"
 import { useEffect, useState } from "react"
 import { FaCloudUploadAlt } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
+import useThemeStore from "./themeStore"
 
 
 const Registration = () => {
@@ -24,6 +27,9 @@ const Registration = () => {
   const [position, setPosition] = useState("Role at organization")
 
   const navigate = useNavigate();
+
+  const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
+
 
   useEffect(() => {
     console.log("Position changed to: ", position)
@@ -34,7 +40,9 @@ const Registration = () => {
 
       {/* left half of page */}
       <section className="flex-1 flex flex-col items-start gap-4">
-        <div className="bg-[#45062e] p-4 rounded-xl text-white flex flex-row w-full justify-center items-center gap-4">
+        <div
+          style={{ backgroundColor: mainBlue }}
+          className="p-4 rounded-xl text-white flex flex-row w-full justify-center items-center gap-4">
           <img src={logo} width={40} height={40} alt="" />
           <h1>Register</h1>
         </div>

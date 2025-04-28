@@ -12,9 +12,17 @@ a {
 }
 
 button {
-  @apply hover:scale-105 hover:cursor-pointer active:scale-100;
+  @apply hover:scale-105 hover:cursor-pointer active:scale-100 bg-[#2D3319] text-white;
+}
+
+input {
+  @apply border-2 border-black;
 }
 
 DropdownMenuRadioItem {
   @apply hover:cursor-pointer;
+}
+
+#root {
+  background-color: #ABDBF6;
 }

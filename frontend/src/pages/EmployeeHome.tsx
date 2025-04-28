@@ -13,16 +13,22 @@ import {
 } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router-dom";
+import useThemeStore from "./themeStore";
 
 
 const EmployeeHome = () => {
+
+  const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
+
 
   const navigate = useNavigate()
 
   return (
     <div className="w-screen flex flex-col p-4 items-start gap-4  ">
 
-      <header className="flex flex-row justify-between items-start w-full border-4 border-[#ed8e6b] rounded-xl p-2 ">
+      <header
+        style={{ borderColor: mainBlue }}
+        className="flex flex-row justify-between items-start w-full border-4  rounded-xl p-2 ">
 
         {/* left side of header */}
         <div className="flex flex-row gap-2 p-2 rounded-xl items-center">

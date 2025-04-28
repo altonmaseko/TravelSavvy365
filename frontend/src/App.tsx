@@ -3,12 +3,11 @@ import Home from './pages/Home'
 import Contact from './pages/Contact'
 import About from './pages/About'
 import Navbar from './pages/Navbar'
-import EmployeeDashboard from './pages/EmployeeDashboard'
 import EmployeeHome from './pages/EmployeeHome'
 import HotelBooking from './pages/HotelBooking'
 import LineManagerHome from './pages/LineManagerHome'
 import Registration from './pages/Registration'
-import SubmitTravelRequest from './pages/SubmitTravelRequest'
+import SubmitTravelRequest from './pages/CreateTravelRequest/SubmitTravelRequest'
 
 function App() {
 
@@ -19,7 +18,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path='/employee-dashboard' element={<EmployeeDashboard />} ></Route>
         <Route path='/employee-home' element={<EmployeeHome />}></Route>
         <Route path='/hotel-booking' element={<HotelBooking />}></Route>
         <Route path='/line-manager-home' element={<LineManagerHome />}></Route>

@@ -9,6 +9,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import useThemeStore from "./themeStore";
 
 
 type Travel = {
@@ -22,17 +23,22 @@ type Travel = {
 }
 
 const TravelStrip = ({ date, travelType, hotelPrice, travelPrice, hotelName, status }: Travel) => {
+
+  const { bondiBlue, blackBrown, mainBlue, lightBlue, redBrown } = useThemeStore();
+
   return (
-    <div className="flex flex-row rounded-xl justify-between p-4 border-4 border-orange-400 font-bold items-center">
+    <div
+      style={{ borderColor: mainBlue }}
+      className="flex flex-row rounded-xl justify-between p-4 border-4 font-bold items-center">
       <p>{date}</p>
       <div className="flex flex-row gap-2">
-        <FaRoad className="text-[#45062E] text-2xl" />
+        <FaRoad style={{ color: redBrown }} className=" text-2xl" />
         <p>{travelType}</p>
       </div>
       <p> -- {travelPrice}</p>
 
       <div className="flex flex-row gap-2">
-        <FaHotel className="text-[#45062E] text-2xl" />
+        <FaHotel style={{ color: redBrown }} className="text-2xl" />
         <p>{hotelName}</p>
       </div>
 
@@ -45,7 +51,7 @@ const TravelStrip = ({ date, travelType, hotelPrice, travelPrice, hotelName, sta
 
         <Popover>
           <PopoverTrigger asChild>
-            <FaEye className="text-[#45062E] text-2xl hover:scale-110 cursor-pointer" />
+            <FaEye style={{ color: redBrown }} className="text-2xl hover:scale-110 cursor-pointer" />
 
           </PopoverTrigger>
           <PopoverContent side="left" className="w-80">
@@ -61,14 +67,14 @@ const TravelStrip = ({ date, travelType, hotelPrice, travelPrice, hotelName, sta
               </div>
 
               <div className="text-sm">
-                <h3 className="font-bold text-lg text-[#45062E]">Hotel Details</h3>
+                <h3 style={{ color: redBrown }} className="font-bold text-lg ">Hotel Details</h3>
                 <p><span className="font-semibold">Name:</span> {hotelName}</p>
                 <p><span className="font-semibold">Price:</span> {hotelPrice}</p>
                 <p><span className="font-semibold">Check-in:</span> {date}</p>
               </div>
 
               <div className="border-t pt-2 text-sm">
-                <h3 className="font-bold text-lg text-[#45062E]">Travel Details</h3>
+                <h3 style={{ color: redBrown }} className="font-bold text-lg ">Travel Details</h3>
                 <p><span className="font-semibold">Mode:</span> {travelType}</p>
                 <p><span className="font-semibold">Pickup:</span> Wits University</p>
                 <p><span className="font-semibold">Drop-off:</span> {hotelName}</p>

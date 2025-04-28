@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import useThemeStore from "./themeStore"
 
 type Hotel = {
   id: number
@@ -35,7 +36,11 @@ const hotels: Hotel[] = [
 ]
 
 const HotelBookingPage = () => {
+  const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
+
+
   const [searchTerm, setSearchTerm] = useState("")
+
 
   const filteredHotels = hotels.filter(hotel =>
     hotel.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -53,7 +58,8 @@ const HotelBookingPage = () => {
 
         <Input
           placeholder="Search hotels by name or location"
-          className="mb-8 border-2 border-[#ed8e6b] focus-visible:ring-0 focus-visible:ring-offset-0"
+          style={{ borderColor: mainBlue }}
+          className="mb-8 border-2 focus-visible:ring-0 focus-visible:ring-offset-0"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -62,7 +68,8 @@ const HotelBookingPage = () => {
           {filteredHotels.map((hotel) => (
             <div
               key={hotel.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden border border-[#ed8e6b] flex flex-col"
+              style={{ borderColor: mainBlue }}
+              className="bg-white rounded-lg shadow-md overflow-hidden border  flex flex-col"
             >
               <img src={hotel.image} alt={hotel.name} className="w-full h-40 object-cover" />
               <div className="p-4 flex flex-col flex-grow">
@@ -70,7 +77,7 @@ const HotelBookingPage = () => {
                 <p className="text-sm text-gray-600 mb-2">{hotel.location}</p>
                 <p className="text-sm text-[#8c4843] mb-4">{hotel.price}</p>
                 <Button
-                  className="mt-auto bg-[#ed8e6b] hover:bg-[#e67853] text-[#8c4843] font-semibold"
+                  className="mt-auto  hover:bg-[#e67853] text-[#8c4843] font-semibold"
                   onClick={() => handleRequest(hotel.name)}
                 >
                   Request Hotel
