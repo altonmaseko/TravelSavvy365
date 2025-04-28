@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router-dom";
-import useThemeStore from "./themeStore";
+import useThemeStore from "../themeStore";
 
 
 const EmployeeHome = () => {

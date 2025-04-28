@@ -11,16 +11,16 @@ const CarRentalBookingCard = () => {
   const [carType, setCarType] = useState('Economy');
 
   return (
-    <div className="flex flex-col items-center p-4">
+    <div className="w-full flex flex-col items-center py-4">
       <div
-        className="w-full  rounded-xl shadow-xl p-8 space-y-6 bg-white"
+        className="w-full rounded-xl shadow-xl p-8 space-y-6 bg-white"
       >
         {/* Title */}
         <div className="border-b pb-4 mb-6" style={{ borderColor: lightBlue }}>
           <h3 className="text-3xl font-bold" style={{ color: mainBlue }}>
             Book Your Car
           </h3>
-          <p className="text-sm mt-2" style={{ color: lightBlue }}>
+          <p className="text-sm mt-2" style={{ color: mainBlue }}>
             Enter your details below to reserve your rental.
           </p>
         </div>
@@ -40,6 +40,7 @@ const CarRentalBookingCard = () => {
         {/* Pickup Date */}
         <div className="flex items-center space-x-3">
           <MdDateRange className="text-2xl" style={{ color: bondiBlue }} />
+          <p>Pick Up Date</p>
           <input
             type="date"
             value={pickupDate}
@@ -51,6 +52,8 @@ const CarRentalBookingCard = () => {
         {/* Return Date */}
         <div className="flex items-center space-x-3">
           <MdDateRange className="text-2xl" style={{ color: bondiBlue }} />
+
+          <p>Return Date</p>
           <input
             type="date"
             value={returnDate}

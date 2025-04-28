@@ -9,7 +9,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import useThemeStore from "./themeStore";
+import useThemeStore from "../themeStore";
 
 
 type Travel = {
