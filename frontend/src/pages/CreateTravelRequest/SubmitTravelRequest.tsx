@@ -55,7 +55,7 @@ const SubmitTravelRequest = () => {
 
     <div className="flex flex-col  px-4">
 
-      <header style={{ backgroundColor: mainBlue }} className="p-4  text-white flex flex-row w-full justify-center items-center gap-4">
+      <header style={{ backgroundColor: mainBlue }} className="p-4  text-white flex flex-row w-full justify-center items-center gap-4 border-b-2 border-black">
         <img src={logo} width={40} height={40} alt="" />
         <h3>Create a Travel Request</h3>
       </header>

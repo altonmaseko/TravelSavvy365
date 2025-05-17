@@ -21,7 +21,7 @@ const RequestReviewRentCarCard = () => {
   const { bondiBlue, blackBrown, mainBlue, lightBlue, redBrown } = useThemeStore();
 
   return (
-    <div className='flex gap-4 p-4 rounded-xl border-black border-2 bg-orange-300 w-fit'>
+    <div className='flex gap-4 p-4  border-black border-2 bg-orange-300'>
 
       {/* Step Indicator */}
       <div className='flex flex-col gap-2 items-center self-center'>

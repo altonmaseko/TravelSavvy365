@@ -9,6 +9,8 @@ import LineManagerHome from './pages/LineManagerHome/LineManagerHome'
 import Registration from './pages/Registration'
 import SubmitTravelRequest from './pages/CreateTravelRequest/SubmitTravelRequest'
 import AdminHome from './pages/AdminHome/AdminHome'
+import Login from './pages/Login'
+
 
 function App() {
 
@@ -25,6 +27,8 @@ function App() {
         <Route path='/registration' element={<Registration />}></Route>
         <Route path='/submit-travel-request' element={<SubmitTravelRequest />}></Route>
         <Route path='/admin-home' element={<AdminHome />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+
       </Routes>
     </Router>
   )

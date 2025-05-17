@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router-dom";
 import useThemeStore from "../themeStore";
+import { FcManager } from "react-icons/fc";
 
 
 const EmployeeHome = () => {
@@ -24,37 +25,29 @@ const EmployeeHome = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="w-screen flex flex-col p-4 items-start gap-4  ">
+    <div className="w-screen min-h-screen flex flex-col items-start justify-start gap-4 ">
 
       <header
-        style={{ borderColor: mainBlue }}
-        className="flex flex-row justify-between items-start w-full border-4  rounded-xl p-2 ">
+        style={{ borderColor: mainBlue, background: bondiBlue }}
+        className="flex flex-row justify-between items-center w-full  p-2 ">
 
         {/* left side of header */}
-        <div className="flex flex-row gap-2 p-2 rounded-xl items-center">
-          <img src="https://placehold.co/40" className="rounded-full" alt="Logo" />
-          <div className="flex flex-col leading-tight">
-            <h2 className="text-base font-semibold">Alton Maseko</h2>
-            <h4 className="text-sm text-gray-600">IT Intern - Bronze position</h4>
-          </div>
-          <CiEdit className="ml-auto text-2xl text-[#45062E] hover:scale-110 cursor-pointer" />
+        <div className="flex flex-row gap-2 p-2 items-center">
+          Home / <h4 className="text-sm text-gray-600 flex gap-2 items-center"> <FcManager size={20} /> Employee [Alton Maseko]</h4>
         </div>
 
         {/* right side of header */}
-        <div className="flex flex-row gap-2 items-center">
-          <div className="min-w-[80px] p-1 flex flex-row border-2 border-black gap-2 rounded items-center">
-            <p className="font-extrabold text-xl text-red-500">6</p>
-            <p> Unread </p>
-            <MdOutlineMarkUnreadChatAlt size={30} />
-          </div>
-          <CiSettings size={40} className="" />
-          <img src="https://placehold.co/10" className="rounded-full" width={35} alt="Logo" />
+        <div className="flex flex-row gap-4 h-full items-center underline font-bold">
+          <p>notifications (8)</p>
+          <p>settings</p>
+          <p>profile</p>
+          <p>home</p>
         </div>
 
 
       </header>
 
-      <main className="flex w-full grow flex-col rounded-xl p-2 gap-2">
+      <main className="flex w-full grow flex-col p-1 gap-2">
         <Select>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Sort By" />
@@ -66,7 +59,7 @@ const EmployeeHome = () => {
           </SelectContent>
         </Select>
 
-        <section className="flex w-full grow flex-col border-black border-4 rounded-xl p-2 gap-2">
+        <section className="flex w-full grow flex-col border-black border-t-1  gap-1">
           <h2>Dashboard</h2>
           <TravelStrip status={"completed"} date="9 April 2025" hotelName="Oval Rivers" hotelPrice="R5600" travelPrice="R365" travelType='Uber' />
           {/* create other different travel trips*/}
@@ -83,7 +76,7 @@ const EmployeeHome = () => {
 
 
       </main>
-    </div>
+    </div >
   )
 }
 

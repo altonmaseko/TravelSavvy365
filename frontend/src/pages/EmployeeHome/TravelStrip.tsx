@@ -28,8 +28,8 @@ const TravelStrip = ({ date, travelType, hotelPrice, travelPrice, hotelName, sta
 
   return (
     <div
-      style={{ borderColor: mainBlue }}
-      className="flex flex-row rounded-xl justify-between p-4 border-4 font-bold items-center">
+      style={{ borderColor: blackBrown, background: mainBlue }}
+      className="flex flex-row justify-between p-4 font-bold items-center">
       <p>{date}</p>
       <div className="flex flex-row gap-2">
         <FaRoad style={{ color: redBrown }} className=" text-2xl" />

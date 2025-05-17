@@ -14,7 +14,7 @@ const RequestReviewUberCard = () => {
   const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
 
   return (
-    <div style={{ background: bondiBlue }} className='flex gap-4 p-4 rounded-xl border-black border-2 w-fit'>
+    <div style={{ background: bondiBlue }} className='flex gap-4 p-4 border-black border-2 '>
 
       <div className='flex flex-col gap-4 items-center '>
         <FaDotCircle />
