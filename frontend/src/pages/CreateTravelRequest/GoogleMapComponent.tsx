@@ -14,7 +14,7 @@ const center = {
 const GoogleMapComponent = () => {
   return (
 
-    <div className='flex rounded-xl overflow-hidden'>
+    <div className='flex  overflow-hidden'>
       <LoadScript googleMapsApiKey="AIzaSyB42WNumXyloYTxxvyT2OFi3NMz-c-0ckY">
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12}>
           {/* Add markers or other components here */}

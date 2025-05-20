@@ -70,7 +70,7 @@ const Login = () => {
           Don’t have an account?{" "}
           <button
             className="text-blue-600 hover:underline p-1"
-            onClick={() => navigate("/register")}
+            onClick={() => navigate("/registration")}
           >
             Register
           </button>

@@ -90,6 +90,10 @@ const Registration = () => {
                   </DropdownMenuContent>
                 </DropdownMenu>
 
+
+              </section>
+
+              <section className="flex flex-col gap-4 p-2 rounded-xl w-full">
                 <div className="grid w-full max-w-sm items-center gap-1.5">
                   <Label>Upload ID</Label>
                   <Input id="picture" type="file" />
@@ -100,18 +104,6 @@ const Registration = () => {
                   <Input id="picture" type="file" />
                 </div>
               </section>
-
-              <section className="flex flex-col gap-4 p-2 rounded-xl w-full">
-                <Button
-                  className="bg-[#ED8E6B] font-bold"
-                  onClick={() => {
-                    alert("Registration sent. You will have access once Admin approves.")
-                    navigate('/employee-home')
-                  }}
-                >
-                  Send Registration
-                </Button>
-              </section>
             </main>
           </CarouselItem>
 
@@ -119,7 +111,7 @@ const Registration = () => {
           <CarouselItem
             className="w-full">
             <section
-              style={{ background: bondiBlue }}
+              style={{ background: lightBlue }}
 
               className="flex-1 flex flex-col items-center justify-center gap-4 w-full border-1 p-2">
               <div className="h-[400px] w-[400px] rounded-full border-2 border-black relative overflow-hidden">
@@ -140,6 +132,15 @@ const Registration = () => {
                   This will appear on your profile. You can change it later.
                 </p>
               </div>
+              <Button
+                className="bg-[#ED8E6B] font-bold self-end"
+                onClick={() => {
+                  alert("Registration sent. You will have access once Admin approves.")
+                  navigate('/employee-home')
+                }}
+              >
+                Send Registration
+              </Button>
             </section>
           </CarouselItem>
 

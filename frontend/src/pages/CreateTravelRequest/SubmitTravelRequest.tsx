@@ -37,6 +37,7 @@ import { useNavigate } from "react-router-dom";
 import useThemeStore from "../themeStore";
 import UberBookingCard from "./UberBookingCard";
 import CarRentalBookingCard from "./CarRentalBookingCard";
+import { FcManager } from "react-icons/fc";
 
 const SubmitTravelRequest = () => {
 
@@ -55,12 +56,21 @@ const SubmitTravelRequest = () => {
 
     <div className="flex flex-col  px-4">
 
-      <header style={{ backgroundColor: mainBlue }} className="p-4  text-white flex flex-row w-full justify-center items-center gap-4 border-b-2 border-black">
-        <img src={logo} width={40} height={40} alt="" />
-        <h3>Create a Travel Request</h3>
+      <header style={{ backgroundColor: mainBlue }} className="p-2  text-white flex flex-row w-full justify-between items-center gap-2">
+        {/* left side of header */}
+        <div className="flex flex-row gap-2 p-2 items-center">
+          <FcManager size={20} />Line Manager / <h4 className="text-sm text-gray-600 flex gap-2 items-center"> Create Travel Request</h4>
+        </div>
+
+        {/* right side of header */}
+        <div className="flex flex-row gap-4 h-full items-center underline font-bold">
+          <p>settings</p>
+          <p>my requests</p>
+          <p>home</p>
+        </div>
       </header>
 
-      <main className="w-screen min-h-screen flex flex-row gap-2 p-4">
+      <main className="w-screen min-h-screen flex flex-row gap-2 p-1">
         {/* left section */}
         <section className="flex flex-col w-[60vw]  p-2 gap-4">
           {/* Input search bar */}
@@ -122,7 +132,7 @@ const SubmitTravelRequest = () => {
             </Select>
           </div>
 
-          <div className="flex flex-col rounded-xl grow p-2 border-red-500 border-2">
+          <div className="flex flex-col rounded-xl grow p-2 ">
             <UberBookingCard />
             <CarRentalBookingCard />
           </div>
