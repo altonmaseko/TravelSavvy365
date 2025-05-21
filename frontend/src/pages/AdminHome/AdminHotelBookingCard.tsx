@@ -1,4 +1,3 @@
-import React from 'react'
 import useThemeStore from '../themeStore';
 import { FaArrowAltCircleRight, FaMoneyBillWave } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
@@ -8,7 +7,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 
 const AdminHotelBookingCard = () => {
 
-  const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
+  const { mainBlue, lightBlue } = useThemeStore();
 
 
   return (

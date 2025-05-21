@@ -5,10 +5,8 @@ import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
@@ -29,7 +27,6 @@ import { useEffect, useState } from "react"
 import { FaCloudUploadAlt } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 import useThemeStore from "./themeStore"
-import { FcManager } from "react-icons/fc"
 
 
 const Registration = () => {
@@ -38,7 +35,7 @@ const Registration = () => {
 
   const navigate = useNavigate();
 
-  const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
+  const { lightBlue } = useThemeStore();
 
 
   useEffect(() => {

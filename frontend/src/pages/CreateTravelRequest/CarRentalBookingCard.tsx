@@ -3,7 +3,7 @@ import { useState } from 'react';
 import useThemeStore from '../themeStore';
 
 const CarRentalBookingCard = () => {
-  const { mainBlue, bondiBlue, lightBlue, blackBrown, redBrown } = useThemeStore();
+  const { mainBlue, bondiBlue, lightBlue } = useThemeStore();
 
   const [pickupLocation, setPickupLocation] = useState('');
   const [pickupDate, setPickupDate] = useState('');

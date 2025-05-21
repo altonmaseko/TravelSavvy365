@@ -1,6 +1,4 @@
-import { MdOutlineMarkUnreadChatAlt } from "react-icons/md";
 import useThemeStore from "../themeStore";
-import { CiEdit, CiSettings } from "react-icons/ci";
 
 import { FcManager } from "react-icons/fc";
 import RequestReviewUberCard from "./RequestReviewUberCard";
@@ -8,7 +6,7 @@ import RequestReviewRentCarCard from "./RequetReviewRentCarCard";
 
 const LineManagerHome = () => {
 
-  const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
+  const { blackBrown, mainBlue } = useThemeStore();
 
   return (
     <div className="w-screen min-h-screen flex flex-col items-start gap-1  ">

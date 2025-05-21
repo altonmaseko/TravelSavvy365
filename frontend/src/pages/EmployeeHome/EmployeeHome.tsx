@@ -1,5 +1,3 @@
-import { CiEdit, CiSettings } from "react-icons/ci"
-import { MdOutlineMarkUnreadChatAlt } from "react-icons/md"
 import TravelStrip from "./TravelStrip"
 
 import { TfiWrite } from "react-icons/tfi";
@@ -19,7 +17,7 @@ import { FcManager } from "react-icons/fc";
 
 const EmployeeHome = () => {
 
-  const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
+  const { bondiBlue, mainBlue } = useThemeStore();
 
 
   const navigate = useNavigate()

@@ -1,9 +1,7 @@
-import React from 'react'
-import { FaArrowAltCircleRight, FaCheckDouble, FaDotCircle, FaMoneyBillWave } from 'react-icons/fa'
-import { FaArrowDownLong, FaCircleCheck } from "react-icons/fa6";
+import { FaArrowAltCircleRight, FaDotCircle, FaMoneyBillWave } from 'react-icons/fa'
+import { FaArrowDownLong } from "react-icons/fa6";
 import useThemeStore from '../themeStore';
 import { Button } from '@/components/ui/button';
-import { GiCancel } from 'react-icons/gi';
 import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@radix-ui/react-checkbox';
@@ -11,7 +9,7 @@ import { Checkbox } from '@radix-ui/react-checkbox';
 
 const RequestReviewUberCard = () => {
 
-  const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
+  const { bondiBlue, blackBrown, lightBlue } = useThemeStore();
 
   return (
     <div style={{ background: bondiBlue }} className='flex gap-4 p-4 border-black border-2 '>

@@ -8,7 +8,7 @@ import useThemeStore from "./themeStore"
 
 const Login = () => {
   const navigate = useNavigate()
-  const { lightBlue, mainBlue } = useThemeStore()
+  const { lightBlue } = useThemeStore()
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")

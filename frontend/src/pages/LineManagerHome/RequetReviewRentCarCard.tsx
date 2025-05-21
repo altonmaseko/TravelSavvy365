@@ -1,16 +1,14 @@
-import React from 'react'
-import { FaCanadianMapleLeaf, FaDotCircle } from 'react-icons/fa'
+import { FaDotCircle } from 'react-icons/fa'
 import { FaArrowDownLong, FaCircleCheck, FaCircleInfo } from "react-icons/fa6";
 import useThemeStore from '../themeStore';
 import { Button } from '@/components/ui/button';
 
-import { GiCancel } from "react-icons/gi";
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Textarea } from '@/components/ui/textarea';
 
 const RequestReviewRentCarCard = () => {
 
-  const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
+  const { blackBrown, lightBlue } = useThemeStore();
 
   return (
     <div className='flex gap-4 p-4  border-black border-1 bg-orange-300'>

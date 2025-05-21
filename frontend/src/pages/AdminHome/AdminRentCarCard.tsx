@@ -1,10 +1,8 @@
-import React from 'react'
-import { FaArrowAltCircleRight, FaCanadianMapleLeaf, FaDotCircle, FaMoneyBillWave } from 'react-icons/fa'
-import { FaArrowDownLong, FaCircleCheck } from "react-icons/fa6";
+import { FaArrowAltCircleRight, FaDotCircle, FaMoneyBillWave } from 'react-icons/fa'
+import { FaArrowDownLong } from "react-icons/fa6";
 import useThemeStore from '../themeStore';
 import { Button } from '@/components/ui/button';
 
-import { GiCancel } from "react-icons/gi";
 
 
 import {
@@ -13,12 +11,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Input } from '@/components/ui/input';
-import { CheckboxItem } from '@radix-ui/react-dropdown-menu';
 import { Checkbox } from '@/components/ui/checkbox';
 
 const RequestReviewRentCarCard = () => {
 
-  const { bondiBlue, blackBrown, mainBlue, lightBlue, redBrown } = useThemeStore();
+  const { blackBrown, lightBlue } = useThemeStore();
 
   return (
     <div className='flex gap-4 p-4  border-black border-2 bg-orange-300'>

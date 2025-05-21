@@ -1,9 +1,5 @@
 import { FaEye, FaHotel, FaRoad } from "react-icons/fa";
 
-
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import {
   Popover,
   PopoverContent,
@@ -24,7 +20,7 @@ type Travel = {
 
 const TravelStrip = ({ date, travelType, hotelPrice, travelPrice, hotelName, status }: Travel) => {
 
-  const { bondiBlue, blackBrown, mainBlue, lightBlue, redBrown } = useThemeStore();
+  const { blackBrown, mainBlue, redBrown } = useThemeStore();
 
   return (
     <div

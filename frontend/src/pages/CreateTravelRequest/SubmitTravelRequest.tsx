@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import GoogleMapComponent from "./GoogleMapComponent"
 
-import { MdLocationOn, MdDriveEta, MdOutlineMarkUnreadChatAlt, MdCarRental } from 'react-icons/md';
+import { MdCarRental } from 'react-icons/md';
 
 import {
   Select,
@@ -32,7 +32,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { FaArrowRight, FaBusAlt, FaPlaneDeparture } from "react-icons/fa";
 import { Label } from "@radix-ui/react-label";
 
-import logo from "@/assets/img/logo.png"
 import { useNavigate } from "react-router-dom";
 import useThemeStore from "../themeStore";
 import UberBookingCard from "./UberBookingCard";
@@ -41,12 +40,7 @@ import { FcManager } from "react-icons/fc";
 
 const SubmitTravelRequest = () => {
 
-  const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
-
-
-  const [pickupLocation, setPickupLocation] = useState('123 Main St, Johannesburg');
-  const [dropoffLocation, setDropoffLocation] = useState('456 Elm St, Sandton');
-  const [rideType, setRideType] = useState('Standard');
+  const { mainBlue } = useThemeStore();
 
   const [date, setDate] = useState<Date>()
 

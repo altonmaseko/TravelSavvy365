@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { MdDriveEta, MdLocationOn } from 'react-icons/md';
 
 const UberBookingCard = () => {

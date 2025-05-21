@@ -1,16 +1,14 @@
-import React from 'react'
-import { FaCheckDouble, FaDotCircle, FaMoneyBillWave } from 'react-icons/fa'
+import { FaDotCircle } from 'react-icons/fa'
 import { FaArrowDownLong, FaCircleCheck, FaCircleInfo } from "react-icons/fa6";
 import useThemeStore from '../themeStore';
 import { Button } from '@/components/ui/button';
-import { GiCancel } from 'react-icons/gi';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Textarea } from '@/components/ui/textarea';
 
 
 const RequestReviewUberCard = () => {
 
-  const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
+  const { bondiBlue, blackBrown, lightBlue } = useThemeStore();
 
   return (
     <div style={{ background: bondiBlue }} className='flex gap-4 p-4 border-black border-1'>

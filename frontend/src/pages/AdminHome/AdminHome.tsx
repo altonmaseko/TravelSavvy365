@@ -1,6 +1,4 @@
-import { MdOutlineMarkUnreadChatAlt } from "react-icons/md";
 import useThemeStore from "../themeStore";
-import { CiEdit, CiSettings } from "react-icons/ci";
 
 import { FcManager } from "react-icons/fc";
 
@@ -10,7 +8,7 @@ import AdminHotelBookingCard from "./AdminHotelBookingCard";
 
 const AdminHome = () => {
 
-  const { bondiBlue, blackBrown, mainBlue, lightBlue, redBrown } = useThemeStore();
+  const { blackBrown, redBrown } = useThemeStore();
 
   return (
     <div className="w-screen min-h-screen flex flex-col items-start gap-4  ">

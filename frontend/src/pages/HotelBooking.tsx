@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import useThemeStore from "./themeStore"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { FaEye } from "react-icons/fa"
 
 type Hotel = {
   id: number
@@ -38,7 +37,7 @@ const hotels: Hotel[] = [
 ]
 
 const HotelBookingPage = () => {
-  const { bondiBlue, blackBrown, mainBlue, lightBlue, redBrown } = useThemeStore();
+  const { mainBlue } = useThemeStore();
 
 
   const [searchTerm, setSearchTerm] = useState("")

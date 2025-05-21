@@ -7,7 +7,7 @@ import useThemeStore from "./themeStore";
 const Home = () => {
   const navigate = useNavigate();
 
-  const { bondiBlue, blackBrown, mainBlue, lightBlue } = useThemeStore();
+  const { blackBrown } = useThemeStore();
 
   return (
     <div
