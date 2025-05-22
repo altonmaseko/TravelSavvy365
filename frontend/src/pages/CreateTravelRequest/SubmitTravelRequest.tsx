@@ -64,7 +64,7 @@ const SubmitTravelRequest = () => {
         </div>
       </header>
 
-      <main className="w-screen min-h-screen flex flex-row gap-2 p-1">
+      <main className="min-h-screen flex flex-row gap-2 p-1">
         {/* left section */}
         <section className="flex flex-col w-[60vw]  p-2 gap-4">
           {/* Input search bar */}

@@ -31,11 +31,9 @@ const EmployeeHome = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="w-screen min-h-screen flex flex-col items-start justify-start gap-4 ">
+    <div className="min-h-screen flex flex-col items-start justify-start gap-4 ">
 
-
-
-      <main className="flex w-full grow flex-col p-1 gap-2">
+      <main className="flex flex-col w-full gap-4 justify-center ">
         <Select>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Sort By" />

@@ -16,7 +16,7 @@ const LineManagerHome = () => {
   }, [])
 
   return (
-    <div className="w-screen min-h-screen flex flex-col items-start gap-1  ">
+    <div className=" min-h-screen flex flex-col items-start gap-1  ">
 
 
       <main className="flex flex-col w-full gap-4 p-2">

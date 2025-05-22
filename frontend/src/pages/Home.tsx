@@ -20,7 +20,7 @@ const Home = () => {
   return (
     <div
 
-      className="h-screen w-screen  flex flex-col justify-between">
+      className="h-screen  flex flex-col justify-between">
 
       <section className="flex flex-col gap-6  h-full">
         <header
