@@ -11,8 +11,6 @@ import {
 } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router-dom";
-import useThemeStore from "../states/themeStore";
-import { FcManager } from "react-icons/fc";
 import { useHeader } from "../states/useHeader";
 import { useEffect } from "react";
 

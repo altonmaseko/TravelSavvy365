@@ -11,7 +11,7 @@ const Home = () => {
 
   const { blackBrown } = useThemeStore();
 
-  const { setShowHeader, showHeader } = useHeader();
+  const { setShowHeader } = useHeader();
 
   useEffect(() => {
     setShowHeader(false)

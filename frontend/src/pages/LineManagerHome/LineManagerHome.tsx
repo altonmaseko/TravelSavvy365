@@ -1,6 +1,4 @@
-import useThemeStore from "../states/themeStore";
 
-import { FcManager } from "react-icons/fc";
 import RequestReviewUberCard from "./RequestReviewUberCard";
 import RequestReviewRentCarCard from "./RequetReviewRentCarCard";
 import { useHeader } from "../states/useHeader";

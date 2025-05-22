@@ -17,9 +17,9 @@ import { useHeader } from './pages/states/useHeader';
 
 function App() {
 
-  const { blackBrown, redBrown, bondiBlue, mainBlue } = useThemeStore();
+  const { blackBrown, mainBlue } = useThemeStore();
 
-  const { workerName, workerType, appLocation, setShowHeader, showHeader } = useHeader();
+  const { workerName, workerType, appLocation, showHeader } = useHeader();
 
 
   return (
