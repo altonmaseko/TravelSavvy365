@@ -22,16 +22,32 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
+          cache: 'npm' # Cache npm dependencies for faster builds [addition]
 
-      - name: npm install, build, and test
+      - name: Install root dependencies # [added]
+        run: npm install
+
+      - name: Install frontend dependencies # [added]
+        run: cd frontend && npm install
+
+      - name: Build frontend #[added]
+        run: npm run build # This runs `cd frontend && npm run build` as defined in root
+    
+      # - name: npm install, build, and test
+      #   run: |
+      #     npm install
+      #     npm run build --if-present
+      #     npm run test --if-present
+
+      # - name: Zip artifact for deployment
+      #   run: zip release.zip ./* -r
+
+      - name: Zip artifact for deployment #[added]
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
-
-      - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
-
+          cd frontend/dist
+          zip -r ../../release.zip .
+          cd ../..
+  
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
