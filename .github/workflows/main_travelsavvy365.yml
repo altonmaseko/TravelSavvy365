@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-          cache: 'npm' # Cache npm dependencies for faster builds [addition]
+          # cache: 'npm' # Cache npm dependencies for faster builds [addition]
 
       - name: Install root dependencies # [added]
         run: npm install
