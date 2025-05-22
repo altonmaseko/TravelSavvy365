@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import useThemeStore from "./themeStore"
+import useThemeStore from "./states/themeStore"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 type Hotel = {

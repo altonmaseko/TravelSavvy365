@@ -1,4 +1,4 @@
-import useThemeStore from "./themeStore";
+import useThemeStore from "./states/themeStore";
 import logo from "@/assets/img/logo.png"
 
 function About() {

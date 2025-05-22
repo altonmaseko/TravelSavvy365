@@ -1,6 +1,6 @@
 import { FaDotCircle } from 'react-icons/fa'
 import { FaArrowDownLong, FaCircleCheck, FaCircleInfo } from "react-icons/fa6";
-import useThemeStore from '../themeStore';
+import useThemeStore from '../states/themeStore';
 import { Button } from '@/components/ui/button';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';

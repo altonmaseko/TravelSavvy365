@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-label"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import useThemeStore from "./themeStore"
+import useThemeStore from "./states/themeStore"
 
 const Login = () => {
   const navigate = useNavigate()

@@ -1,35 +1,24 @@
-import useThemeStore from "../themeStore";
+import useThemeStore from "../states/themeStore";
 
 import { FcManager } from "react-icons/fc";
 import RequestReviewUberCard from "./RequestReviewUberCard";
 import RequestReviewRentCarCard from "./RequetReviewRentCarCard";
+import { useHeader } from "../states/useHeader";
+import { useEffect } from "react";
 
 const LineManagerHome = () => {
 
-  const { blackBrown, mainBlue } = useThemeStore();
+  // const { blackBrown, mainBlue } = useThemeStore();
+
+  const { setWorkerName, setWorkerType } = useHeader();
+
+  useEffect(() => {
+    setWorkerName("Alton Maseko")
+    setWorkerType("Line Manager")
+  }, [])
 
   return (
     <div className="w-screen min-h-screen flex flex-col items-start gap-1  ">
-
-      <header
-        style={{ borderColor: blackBrown, backgroundColor: mainBlue }}
-        className="flex flex-row justify-between items-center w-full p-2 ">
-
-        {/* left side of header */}
-        <div className="flex flex-row gap-2 p-2 items-center">
-          Home / <h4 className="text-sm text-gray-600 flex gap-2 items-center"> <FcManager size={20} /> Line Manager [Jimmy Kawasoki]</h4>
-        </div>
-
-        {/* right side of header */}
-        <div className="flex flex-row gap-4 h-full items-center underline font-bold">
-          <p>notifications (8)</p>
-          <p>settings</p>
-          <p>profile</p>
-          <p>home</p>
-        </div>
-
-
-      </header>
 
 
       <main className="flex flex-col w-full gap-4 p-2">

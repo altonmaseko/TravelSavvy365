@@ -33,7 +33,7 @@ import { FaArrowRight, FaBusAlt, FaPlaneDeparture } from "react-icons/fa";
 import { Label } from "@radix-ui/react-label";
 
 import { useNavigate } from "react-router-dom";
-import useThemeStore from "../themeStore";
+import useThemeStore from "../states/themeStore";
 import UberBookingCard from "./UberBookingCard";
 import CarRentalBookingCard from "./CarRentalBookingCard";
 import { FcManager } from "react-icons/fc";

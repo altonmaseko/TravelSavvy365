@@ -1,6 +1,6 @@
 import { MdLocationOn, MdDriveEta, MdDateRange } from 'react-icons/md';
 import { useState } from 'react';
-import useThemeStore from '../themeStore';
+import useThemeStore from '../states/themeStore';
 
 const CarRentalBookingCard = () => {
   const { mainBlue, bondiBlue, lightBlue } = useThemeStore();
