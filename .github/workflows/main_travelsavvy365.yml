@@ -48,8 +48,16 @@ jobs:
       #     zip -r ../../release.zip .
       #     cd ../..
 
-      - name: Zip artifact for deployment # [addded 2]
-        run: zip -r release.zip ./* # Zip entire project directory
+      # - name: Zip artifact for deployment # [addded 2]
+      #   run: zip -r release.zip ./* # Zip entire project directory
+
+      - name: Zip artifact for deployment
+        run: |
+          mkdir deploy
+          cp -r * deploy
+          cd deploy
+          zip -r ../release.zip .
+          cd ..
   
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
