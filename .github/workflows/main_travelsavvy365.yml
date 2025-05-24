@@ -39,8 +39,8 @@ jobs:
       #     npm run build --if-present
       #     npm run test --if-present
 
-      # - name: Zip artifact for deployment
-      #   run: zip release.zip ./* -r
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* -r
 
       # - name: Zip artifact for deployment #[added]
       #   run: |
@@ -48,8 +48,6 @@ jobs:
       #     zip -r ../../release.zip .
       #     cd ../..
 
-      - name: Zip artifact for deployment # [addded 2]
-        run: zip -r release.zip ./* # Zip entire project directory
 
 
       - name: Upload artifact for deployment job
