@@ -28,6 +28,8 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
 });
 
+// something
+
 
 
 // Use environment port for Azure, fallback to 3000 locally
