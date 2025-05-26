@@ -61,7 +61,9 @@ const Login = () => {
             />
           </div>
 
-          <Button type="submit" className="w-full bg-[#ED8E6B] font-bold">
+          <Button type="submit" className="w-full bg-[#ED8E6B] font-bold"
+            onClick={() => navigate("/employee-home")}
+          >
             Login
           </Button>
         </form>

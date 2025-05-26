@@ -62,7 +62,7 @@ const Home = () => {
               className="bg-[#ED8E6B] font-bold" onClick={() => navigate('/registration')} > Register  </Button>
             <Button
               style={{ backgroundColor: blackBrown }}
-              className="bg-[#ED8E6B] font-bold"> Login </Button>
+              className="bg-[#ED8E6B] font-bold" onClick={() => navigate('/login')} > Login </Button>
           </section>
         </main>
 
