@@ -1,5 +1,4 @@
-import { FaArrowAltCircleRight, FaDotCircle, FaMoneyBillWave } from 'react-icons/fa'
-import { FaArrowDownLong } from "react-icons/fa6";
+import { FaArrowAltCircleRight, FaMoneyBillWave } from 'react-icons/fa'
 import useThemeStore from '../../states/themeStore';
 import { Button } from '@/components/ui/button';
 

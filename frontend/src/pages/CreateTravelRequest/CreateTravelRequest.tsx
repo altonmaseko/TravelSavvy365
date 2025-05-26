@@ -33,14 +33,12 @@ import { FaArrowRight, FaBusAlt, FaPlaneDeparture } from "react-icons/fa";
 import { Label } from "@radix-ui/react-label";
 
 import { useNavigate } from "react-router-dom";
-import useThemeStore from "../../states/themeStore";
 import UberBookingCard from "./UberBookingCard";
 import CarRentalBookingCard from "./CarRentalBookingCard";
 import { FcManager } from "react-icons/fc";
 
 const CreateTravelRequest = () => {
 
-  const { mainBlue } = useThemeStore();
 
   const [date, setDate] = useState<Date>()
 
@@ -48,9 +46,9 @@ const CreateTravelRequest = () => {
 
   const [travelType, setTravelType] = useState<'uber' | 'shuttle' | 'rental' | 'flight'>("uber");
 
-  const [flightCompany, setFlightCompany] = useState<'flysafair' | 'airlink' | 'lift'>("flysafair");
-  const [shuttleCompany, setShuttleCompany] = useState<'intercape' | 'greyhound' | 'translux' | 'eldos' | 'citiliner' | 'bazbus'>("intercape");
-  const [carRentalCompany, setCarRentalCompany] = useState<'avis' | 'hertz' | 'enterprise rent-a-car' | 'europcar'>("avis");
+  const [, setFlightCompany] = useState<'flysafair' | 'airlink' | 'lift'>("flysafair");
+  const [, setShuttleCompany] = useState<'intercape' | 'greyhound' | 'translux' | 'eldos' | 'citiliner' | 'bazbus'>("intercape");
+  const [, setCarRentalCompany] = useState<'avis' | 'hertz' | 'enterprise rent-a-car' | 'europcar'>("avis");
 
   const handleTravelTypeChange = (travelType: 'uber' | 'shuttle' | 'rental' | 'flight', subType: string) => {
     setTravelType(travelType);
