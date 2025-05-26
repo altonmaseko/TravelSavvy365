@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 // date imports
@@ -33,12 +33,12 @@ import { FaArrowRight, FaBusAlt, FaPlaneDeparture } from "react-icons/fa";
 import { Label } from "@radix-ui/react-label";
 
 import { useNavigate } from "react-router-dom";
-import useThemeStore from "../states/themeStore";
+import useThemeStore from "../../states/themeStore";
 import UberBookingCard from "./UberBookingCard";
 import CarRentalBookingCard from "./CarRentalBookingCard";
 import { FcManager } from "react-icons/fc";
 
-const SubmitTravelRequest = () => {
+const CreateTravelRequest = () => {
 
   const { mainBlue } = useThemeStore();
 
@@ -46,23 +46,36 @@ const SubmitTravelRequest = () => {
 
   const navigate = useNavigate()
 
+  const [travelType, setTravelType] = useState<'uber' | 'shuttle' | 'rental' | 'flight'>("uber");
+
+  const [flightCompany, setFlightCompany] = useState<'flysafair' | 'airlink' | 'lift'>("flysafair");
+  const [shuttleCompany, setShuttleCompany] = useState<'intercape' | 'greyhound' | 'translux' | 'eldos' | 'citiliner' | 'bazbus'>("intercape");
+  const [carRentalCompany, setCarRentalCompany] = useState<'avis' | 'hertz' | 'enterprise rent-a-car' | 'europcar'>("avis");
+
+  const handleTravelTypeChange = (travelType: 'uber' | 'shuttle' | 'rental' | 'flight', subType: string) => {
+    setTravelType(travelType);
+    console.log(`Travel type changed to: ${subType}`);
+
+    if (travelType === 'flight') {
+      setFlightCompany(subType as 'flysafair' | 'airlink' | 'lift');
+    } else if (travelType === 'shuttle') {
+      setShuttleCompany(subType as 'intercape' | 'greyhound' | 'translux' | 'eldos' | 'citiliner' | 'bazbus');
+    } else if (travelType === 'rental') {
+      setCarRentalCompany(subType as 'avis' | 'hertz' | 'enterprise rent-a-car' | 'europcar');
+    }
+  }
+
+  useEffect(() => {
+    // Set the initial travel type to Uber
+    setTravelType('uber');
+  }, []);
+
+
+
   return (
 
-    <div className="flex flex-col  px-4">
+    <div className="flex flex-col">
 
-      <header style={{ backgroundColor: mainBlue }} className="p-2  text-white flex flex-row w-full justify-between items-center gap-2">
-        {/* left side of header */}
-        <div className="flex flex-row gap-2 p-2 items-center">
-          <FcManager size={20} />Line Manager / <h4 className="text-sm text-gray-600 flex gap-2 items-center"> Create Travel Request</h4>
-        </div>
-
-        {/* right side of header */}
-        <div className="flex flex-row gap-4 h-full items-center underline font-bold">
-          <p>settings</p>
-          <p>my requests</p>
-          <p>home</p>
-        </div>
-      </header>
 
       <main className="min-h-screen flex flex-row gap-2 p-1">
         {/* left section */}
@@ -74,9 +87,11 @@ const SubmitTravelRequest = () => {
           </div>
 
           <GoogleMapComponent />
+
+          {/* Transport booking card container */}
           <div className="flex flex-row flex-wrap justify-between gap-4">
 
-            <Select>
+            <Select onValueChange={(value) => handleTravelTypeChange('shuttle', value)}>
               <SelectTrigger className="w-[180px]">
                 <FaBusAlt /> <SelectValue placeholder="Select a Shuttle" />
               </SelectTrigger>
@@ -94,9 +109,9 @@ const SubmitTravelRequest = () => {
               </SelectContent>
             </Select>
 
-            <Button className="grow">Uber </Button>
+            <Button className="grow" onClick={() => handleTravelTypeChange('uber', '')}>Uber </Button>
 
-            <Select>
+            <Select onValueChange={(value) => handleTravelTypeChange('flight', value)}>
               <SelectTrigger className="w-[180px]">
                 <FaPlaneDeparture /> <SelectValue placeholder="Select Flight" />
               </SelectTrigger>
@@ -110,7 +125,7 @@ const SubmitTravelRequest = () => {
               </SelectContent>
             </Select>
 
-            <Select>
+            <Select onValueChange={(value) => handleTravelTypeChange('rental', value)}>
               <SelectTrigger className="w-[180px]">
                 <MdCarRental /> <SelectValue placeholder="Rent a Car" />
               </SelectTrigger>
@@ -127,8 +142,23 @@ const SubmitTravelRequest = () => {
           </div>
 
           <div className="flex flex-col rounded-xl grow p-2 ">
-            <UberBookingCard />
-            <CarRentalBookingCard />
+            {
+              travelType === 'uber' ? (
+                <UberBookingCard />
+              ) : travelType === 'rental' ? (
+                <CarRentalBookingCard />
+              ) : travelType === 'flight' ? (
+                <div className="flex flex-col items-center justify-center gap-4">
+                  <h3 className="text-2xl font-bold">Flight Booking Coming Soon!</h3>
+                  <FcManager size={100} />
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center gap-4">
+                  <h3 className="text-2xl font-bold">Shuttle Booking Coming Soon!</h3>
+                  <FcManager size={100} />
+                </div>
+              )
+            }
           </div>
 
         </section>
@@ -189,4 +219,4 @@ const SubmitTravelRequest = () => {
   )
 }
 
-export default SubmitTravelRequest
+export default CreateTravelRequest

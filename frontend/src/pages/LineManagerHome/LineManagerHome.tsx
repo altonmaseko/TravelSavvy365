@@ -1,7 +1,7 @@
 
 import RequestReviewUberCard from "./RequestReviewUberCard";
 import RequestReviewRentCarCard from "./RequetReviewRentCarCard";
-import { useHeader } from "../states/useHeader";
+import { useHeader } from "../../states/useHeader";
 import { useEffect } from "react";
 
 const LineManagerHome = () => {
@@ -14,6 +14,8 @@ const LineManagerHome = () => {
     setWorkerName("Alton Maseko")
     setWorkerType("Line Manager")
   }, [])
+
+
 
   return (
     <div className=" min-h-screen flex flex-col items-start gap-1  ">

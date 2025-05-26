@@ -5,7 +5,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import useThemeStore from "../states/themeStore";
+import useThemeStore from "../../states/themeStore";
 
 
 type Travel = {

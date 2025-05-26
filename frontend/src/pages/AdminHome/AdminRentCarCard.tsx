@@ -1,6 +1,6 @@
 import { FaArrowAltCircleRight, FaDotCircle, FaMoneyBillWave } from 'react-icons/fa'
 import { FaArrowDownLong } from "react-icons/fa6";
-import useThemeStore from '../states/themeStore';
+import useThemeStore from '../../states/themeStore';
 import { Button } from '@/components/ui/button';
 
 
@@ -18,14 +18,14 @@ const RequestReviewRentCarCard = () => {
   const { blackBrown, lightBlue } = useThemeStore();
 
   return (
-    <div className='flex gap-4 p-4  border-black border-2 bg-orange-300'>
+    <div className='flex gap-4 p-4  border-black border-2 bg-orange-300 flex-wrap'>
 
       {/* Step Indicator */}
-      <div className='flex flex-col gap-2 items-center self-center'>
+      {/* <div className='flex flex-col gap-2 items-center self-center'>
         <FaDotCircle />
         <FaArrowDownLong />
         <FaDotCircle />
-      </div>
+      </div> */}
 
       {/* Booking Details Section */}
       <div className='flex flex-col gap-2 w-[200px]'>
@@ -67,7 +67,7 @@ const RequestReviewRentCarCard = () => {
           <PopoverContent side="left" className="w-80 flex flex-col gap-4">
             {/* create content here */}
             <h5>Transfer to <i className='font-normal'>Kim Nardia</i> </h5>
-            <Input placeholder='Amout' type='number'></Input>
+            <Input placeholder='Amount' type='number'></Input>
             <div className="flex items-center space-x-2">
               <Checkbox id="terms" />
               <label

@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router-dom";
-import { useHeader } from "../states/useHeader";
+import { useHeader } from "../../states/useHeader";
 import { useEffect } from "react";
 
 
@@ -57,7 +57,7 @@ const EmployeeHome = () => {
 
         </section>
 
-        <Button className="flex flex-row gap-2 w-fit text-lg p-4" onClick={() => navigate('/submit-travel-request')}> <TfiWrite size={40} /> Create request </Button>
+        <Button className="flex flex-row gap-2 w-fit text-lg p-4" onClick={() => navigate('/create-travel-request')}> <TfiWrite size={40} /> Create request </Button>
 
 
 

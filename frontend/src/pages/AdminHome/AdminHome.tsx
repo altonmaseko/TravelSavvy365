@@ -2,7 +2,7 @@
 import AdminRentCarCard from "./AdminRentCarCard";
 import AdminUberCard from "./AdminUberCard";
 import AdminHotelBookingCard from "./AdminHotelBookingCard";
-import { useHeader } from "../states/useHeader";
+import { useHeader } from "../../states/useHeader";
 import { useEffect } from "react";
 
 const AdminHome = () => {

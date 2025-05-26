@@ -1,6 +1,6 @@
 import { FaArrowAltCircleRight, FaDotCircle, FaMoneyBillWave } from 'react-icons/fa'
 import { FaArrowDownLong } from "react-icons/fa6";
-import useThemeStore from '../states/themeStore';
+import useThemeStore from '../../states/themeStore';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover';
 import { Input } from '@/components/ui/input';
@@ -12,13 +12,13 @@ const RequestReviewUberCard = () => {
   const { bondiBlue, blackBrown, lightBlue } = useThemeStore();
 
   return (
-    <div style={{ background: bondiBlue }} className='flex gap-4 p-4 border-black border-2 '>
+    <div style={{ background: bondiBlue }} className='flex gap-4 p-4 border-black border-2 flex-wrap'>
 
-      <div className='flex flex-col gap-4 items-center '>
+      {/* <div className='flex flex-col gap-4 items-center '>
         <FaDotCircle />
         <FaArrowDownLong />
         <FaDotCircle />
-      </div>
+      </div> */}
 
       <div className='flex flex-col gap-2 w-[200px]'>
         <p style={{ borderColor: blackBrown, backgroundColor: lightBlue }} className='gap-2 rounded border-2 p-2'> 23 Sandton </p>

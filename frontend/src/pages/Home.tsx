@@ -2,20 +2,15 @@ import { Button } from "@/components/ui/button"
 
 import logo from "@/assets/img/logo.png"
 import { useNavigate } from "react-router-dom"
-import useThemeStore from "./states/themeStore";
-import { useHeader } from "./states/useHeader";
+import useThemeStore from "../states/themeStore";
+import { useHeader } from "../states/useHeader";
 import { useEffect } from "react";
+import { useSidebar } from "@/states/useSidebar";
 
 const Home = () => {
   const navigate = useNavigate();
 
   const { blackBrown } = useThemeStore();
-
-  const { setShowHeader } = useHeader();
-
-  useEffect(() => {
-    setShowHeader(false)
-  }, [])
 
   return (
     <div
