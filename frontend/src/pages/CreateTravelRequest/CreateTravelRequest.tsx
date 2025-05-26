@@ -36,6 +36,8 @@ import { useNavigate } from "react-router-dom";
 import UberBookingCard from "./UberBookingCard";
 import CarRentalBookingCard from "./CarRentalBookingCard";
 import { FcManager } from "react-icons/fc";
+import ShuttleBookingCard from "./ShuttleBookingCard";
+import FlightBookingCard from "./FlightBookingCard";
 
 const CreateTravelRequest = () => {
 
@@ -146,15 +148,17 @@ const CreateTravelRequest = () => {
               ) : travelType === 'rental' ? (
                 <CarRentalBookingCard />
               ) : travelType === 'flight' ? (
-                <div className="flex flex-col items-center justify-center gap-4">
-                  <h3 className="text-2xl font-bold">Flight Booking Coming Soon!</h3>
-                  <FcManager size={100} />
-                </div>
+                <FlightBookingCard />
+                // <div className="flex flex-col items-center justify-center gap-4">
+                //   <h3 className="text-2xl font-bold">Flight Booking Coming Soon!</h3>
+                //   <FcManager size={100} />
+                // </div>
               ) : (
-                <div className="flex flex-col items-center justify-center gap-4">
-                  <h3 className="text-2xl font-bold">Shuttle Booking Coming Soon!</h3>
-                  <FcManager size={100} />
-                </div>
+                <ShuttleBookingCard />
+                // <div className="flex flex-col items-center justify-center gap-4">
+                //   <h3 className="text-2xl font-bold">Shuttle Booking Coming Soon!</h3>
+                //   <FcManager size={100} />
+                // </div>
               )
             }
           </div>

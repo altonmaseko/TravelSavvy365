@@ -34,7 +34,7 @@ const Home = () => {
                 <a href="">Features</a>
               </li>
               <li>
-                <a href="">About</a>
+                <a href="" onClick={() => navigate('/about')}>About</a>
               </li>
               <li>
                 <a href="">Contact</a>

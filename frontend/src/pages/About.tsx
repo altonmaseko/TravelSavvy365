@@ -5,7 +5,7 @@ function About() {
   const { bondiBlue, blackBrown, mainBlue, lightBlue, redBrown } = useThemeStore();
 
   return (
-    <main className="px-6 py-12">
+    <main className="px-6">
       <section className="space-y-10">
         {/* Header */}
         <div className="text-center space-y-4">
