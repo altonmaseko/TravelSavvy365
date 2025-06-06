@@ -26,7 +26,7 @@ import { Label } from "@radix-ui/react-dropdown-menu"
 import { useEffect, useState } from "react"
 import { FaCloudUploadAlt } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
-import useThemeStore from "./themeStore"
+import useThemeStore from "../states/themeStore"
 
 
 const Registration = () => {

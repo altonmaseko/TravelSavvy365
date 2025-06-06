@@ -1,4 +1,4 @@
-import useThemeStore from '../themeStore';
+import useThemeStore from '../../states/themeStore';
 import { FaArrowAltCircleRight, FaMoneyBillWave } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -25,7 +25,7 @@ const AdminHotelBookingCard = () => {
       <p style={{ background: lightBlue }} className='flex gap-2 rounded p-2 border-2 border-black font-bold'>
         3/11/2025 - 6/11/2025 </p>
 
-      <div className='flex gap-2'>
+      <div className='flex gap-2 flex-wrap'>
         <Button className='flex'>Auto Book  <FaArrowAltCircleRight /> </Button>
 
         {/* Transmit Funds Button Pop up */}

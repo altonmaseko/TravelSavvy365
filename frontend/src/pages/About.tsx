@@ -1,11 +1,11 @@
-import useThemeStore from "./themeStore";
+import useThemeStore from "../states/themeStore";
 import logo from "@/assets/img/logo.png"
 
 function About() {
   const { bondiBlue, blackBrown, mainBlue, lightBlue, redBrown } = useThemeStore();
 
   return (
-    <main className="w-screen px-6 py-12">
+    <main className="px-6">
       <section className="space-y-10">
         {/* Header */}
         <div className="text-center space-y-4">

@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 
 import logo from "@/assets/img/logo.png"
 import { useNavigate } from "react-router-dom"
-import useThemeStore from "./themeStore";
+import useThemeStore from "../states/themeStore";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div
 
-      className="h-screen w-screen  flex flex-col justify-between">
+      className="h-screen  flex flex-col justify-between">
 
       <section className="flex flex-col gap-6  h-full">
         <header
@@ -34,7 +34,7 @@ const Home = () => {
                 <a href="">Features</a>
               </li>
               <li>
-                <a href="">About</a>
+                <a href="" onClick={() => navigate('/about')}>About</a>
               </li>
               <li>
                 <a href="">Contact</a>
@@ -62,7 +62,7 @@ const Home = () => {
               className="bg-[#ED8E6B] font-bold" onClick={() => navigate('/registration')} > Register  </Button>
             <Button
               style={{ backgroundColor: blackBrown }}
-              className="bg-[#ED8E6B] font-bold"> Login </Button>
+              className="bg-[#ED8E6B] font-bold" onClick={() => navigate('/login')} > Login </Button>
           </section>
         </main>
 
