@@ -7,7 +7,7 @@ import useThemeStore from "../states/themeStore";
 const Home = () => {
   const navigate = useNavigate();
 
-  const { blackBrown } = useThemeStore();
+  const { blackBrown, lightBlue, bondiBlue, mainBlue } = useThemeStore();
 
   return (
     <div
@@ -26,7 +26,9 @@ const Home = () => {
 
           {/* Right side of header */}
           <div>
-            <ul className="flex flex-row items-center gap-4 h-full  font-extrabold underline">
+            <ul
+              style={{ color: mainBlue }}
+              className="flex flex-row items-center gap-4 h-full  font-extrabold underline">
               <li>
                 <a href="">Pricing</a>
               </li>
@@ -69,7 +71,9 @@ const Home = () => {
       </section>
 
 
-      <footer className="bg-gray-900 text-white px-6 py-10 w-full">
+      <footer
+        style={{ backgroundColor: mainBlue }}
+        className=" text-white px-6 py-10 w-full">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto justify-center m-auto">
 
           <div className="space-y-2">

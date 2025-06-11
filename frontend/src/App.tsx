@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { useNavigate } from "react-router-dom"
 import Home from './pages/Home'
-import About from './pages/About'
+import About from './pages/About/About'
 import EmployeeHome from './pages/EmployeeHome/EmployeeHome'
 import HotelBooking from './pages/HotelBooking/HotelBooking'
 import LineManagerHome from './pages/LineManagerHome/LineManagerHome'
