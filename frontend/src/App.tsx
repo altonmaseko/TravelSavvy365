@@ -9,6 +9,7 @@ import Registration from './pages/Registration'
 import CreateTravelRequest from './pages/CreateTravelRequest/CreateTravelRequest'
 import AdminHome from './pages/AdminHome/AdminHome'
 import Login from './pages/Login'
+import Test from './pages/Test'
 import useThemeStore from './states/themeStore';
 import { FcManager } from 'react-icons/fc';
 import { useHeader } from './states/useHeader';
@@ -69,6 +70,8 @@ function App() {
             <Route path="/create-travel-request" element={<CreateTravelRequest />} />
             <Route path="/admin-home" element={<AdminHome />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/test" element={<Test />} />
+
           </Routes>
         </main>
       </div>

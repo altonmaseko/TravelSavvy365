@@ -5,7 +5,7 @@ import UserModel from "../Models/UserModels.js";
 dotenv.config();
 
 // In-memory user storage for demo (replace with actual database)
-//TODO include company database connection and user model
+// TODO include company database connection and user model
 // This is just a placeholder. In a real application, you would use a database.
 const users = [
     new UserModel(1, "John Doe", "employee@company.com", "password123", "employee"),
@@ -17,7 +17,7 @@ export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
         console.log('Login request received:', { email });
-        
+
         // Validate input
         if (!email || !password) {
             return res.status(400).json({
@@ -27,7 +27,7 @@ export const login = async (req, res) => {
 
         // Find user by email
         const user = users.find(u => u.email === email);
-        
+
         if (!user) {
             return res.status(401).json({
                 message: 'Invalid email or password'
@@ -36,7 +36,7 @@ export const login = async (req, res) => {
 
         // Verify password
         const isValidPassword = user.verifyPassword(password);
-        
+
         if (!isValidPassword) {
             return res.status(401).json({
                 message: 'Invalid email or password'
@@ -152,7 +152,7 @@ export const register = async (req, res) => {
 export const getCurrentUser = async (req, res) => {
     try {
         const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
-        
+
         if (!token) {
             return res.status(401).json({ message: 'No token provided' });
         }
@@ -191,16 +191,16 @@ export const resetPassword = async (req, res) => {
         }
 
         const user = users.find(u => u.email === email);
-        
+
         if (!user) {
             // Don't reveal whether user exists or not for security
             return res.json({
                 message: 'If an account with that email exists, a password reset link has been sent.'
             });
         }
-        
+
         console.log(`Password reset requested for user: ${email}`);
-        
+
         res.json({
             message: 'If an account with that email exists, a password reset link has been sent.'
         });
@@ -215,10 +215,10 @@ export const resetPassword = async (req, res) => {
 
 function generateToken(user) {
     return jwt.sign(
-        { 
-            id: user.id, 
-            email: user.email, 
-            role: user.employeeType 
+        {
+            id: user.id,
+            email: user.email,
+            role: user.employeeType
         },
         process.env.JWT_SECRET,
         { expiresIn: process.env.JWT_EXPIRES_IN || '24h' }

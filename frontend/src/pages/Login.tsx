@@ -6,6 +6,30 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import useThemeStore from "../states/themeStore"
 
+// AXIOS =======================
+import axios, { AxiosResponse, AxiosError } from 'axios';
+
+// Base URL configuration
+const BASE_URL = 'http://localhost:3001/api';
+
+// Create axios instance with default config
+const api = axios.create({
+  baseURL: BASE_URL,
+  timeout: 10000, // 10 seconds
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: true, // Include cookies (for JWT)
+});
+
+interface ApiResponse<T> {
+  success: boolean;
+  data?: T;
+  message?: string;
+}
+
+// AXIOS ======================
+
 const Login = () => {
   const navigate = useNavigate()
   const { lightBlue } = useThemeStore()
@@ -62,7 +86,25 @@ const Login = () => {
           </div>
 
           <Button type="submit" className="w-full bg-[#ED8E6B] font-bold"
-            onClick={() => navigate("/employee-home")}
+            onClick={async () => {
+
+              try {
+                const response = await api.post<ApiResponse<{ token: string }>>('auth/login', {
+                  email,
+                  password
+                });
+
+                const data = response.data;
+                if (data.success) {
+                  localStorage.setItem('token', data.data?.token || '');
+                  alert("Login successful!")
+                  navigate("/employee-home")
+                }
+              } catch (error) {
+                alert("Login failed. Please check your credentials and try again.")
+              }
+
+            }}
           >
             Login
           </Button>
@@ -74,7 +116,8 @@ const Login = () => {
             className="text-blue-600 hover:underline p-1"
             onClick={() => navigate("/registration")}
           >
-            Register
+
+
           </button>
         </div>
       </div>

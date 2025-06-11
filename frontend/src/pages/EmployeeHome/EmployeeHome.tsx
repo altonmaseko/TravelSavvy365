@@ -15,15 +15,51 @@ import { useHeader } from "../../states/useHeader";
 import { useEffect } from "react";
 
 
+
+// AXIOS =======================
+import axios, { AxiosResponse, AxiosError } from 'axios';
+
+// Base URL configuration
+const BASE_URL = 'http://localhost:3001/api';
+
+// Create axios instance with default config
+const api = axios.create({
+  baseURL: BASE_URL,
+  timeout: 10000, // 10 seconds
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: true, // Include cookies (for JWT)
+});
+
+interface ApiResponse<T> {
+  success: boolean;
+  data?: T;
+  message?: string;
+}
+
+// AXIOS ======================
+
 const EmployeeHome = () => {
 
 
   const { setWorkerName, setWorkerType } = useHeader();
 
   useEffect(() => {
+    const loadRequests = async () => {
+      try {
+        const response: AxiosResponse<ApiResponse<any[]>> = await api.get('/travel/requests');
+
+        const data = response.data;
+      } catch (error) {
+
+      }
+    }
+
     setWorkerName("Ana Kimberly")
     setWorkerType("Employee")
   }, [])
+
 
 
 
