@@ -16,15 +16,10 @@ import {
 } from 'lucide-react';
 
 // Mock theme store values - replace with your actual theme store
-const useThemeStore = () => ({
-  bondiBlue: '#0891b2',
-  blackBrown: '#292524',
-  mainBlue: '#1e40af',
-  lightBlue: '#e0f2fe',
-  redBrown: '#92400e'
-});
+
 
 import logo from "@/assets/img/logo.png"
+import useThemeStore from '@/states/themeStore';
 
 function About() {
   const { bondiBlue, blackBrown, mainBlue, redBrown } = useThemeStore();
