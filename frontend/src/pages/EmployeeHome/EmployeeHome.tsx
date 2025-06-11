@@ -11,41 +11,29 @@ import {
 } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router-dom";
-import useThemeStore from "../themeStore";
-import { FcManager } from "react-icons/fc";
+import { useHeader } from "../../states/useHeader";
+import { useEffect } from "react";
 
 
 const EmployeeHome = () => {
 
-  const { bondiBlue, mainBlue } = useThemeStore();
+
+  const { setWorkerName, setWorkerType } = useHeader();
+
+  useEffect(() => {
+    setWorkerName("Ana Kimberly")
+    setWorkerType("Employee")
+  }, [])
+
+
 
 
   const navigate = useNavigate()
 
   return (
-    <div className="w-screen min-h-screen flex flex-col items-start justify-start gap-4 ">
+    <div className="min-h-screen flex flex-col items-start justify-start gap-4 ">
 
-      <header
-        style={{ borderColor: mainBlue, background: bondiBlue }}
-        className="flex flex-row justify-between items-center w-full  p-2 ">
-
-        {/* left side of header */}
-        <div className="flex flex-row gap-2 p-2 items-center">
-          Home / <h4 className="text-sm text-gray-600 flex gap-2 items-center"> <FcManager size={20} /> Employee [Alton Maseko]</h4>
-        </div>
-
-        {/* right side of header */}
-        <div className="flex flex-row gap-4 h-full items-center underline font-bold">
-          <p>notifications (8)</p>
-          <p>settings</p>
-          <p>profile</p>
-          <p>home</p>
-        </div>
-
-
-      </header>
-
-      <main className="flex w-full grow flex-col p-1 gap-2">
+      <main className="flex flex-col w-full gap-4 justify-center ">
         <Select>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Sort By" />
@@ -69,7 +57,7 @@ const EmployeeHome = () => {
 
         </section>
 
-        <Button className="flex flex-row gap-2 w-fit text-lg p-4" onClick={() => navigate('/submit-travel-request')}> <TfiWrite size={40} /> Create request </Button>
+        <Button className="flex flex-row gap-2 w-fit text-lg p-4" onClick={() => navigate('/create-travel-request')}> <TfiWrite size={40} /> Create request </Button>
 
 
 
