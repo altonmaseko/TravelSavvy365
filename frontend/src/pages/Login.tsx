@@ -4,7 +4,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-label"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import useThemeStore from "./themeStore"
+import useThemeStore from "../states/themeStore"
+import { toast } from 'react-hot-toast';
+
 
 const Login = () => {
   const navigate = useNavigate()
@@ -17,15 +19,15 @@ const Login = () => {
     e.preventDefault()
     // TODO: Replace with actual login logic
     if (email === "test@example.com" && password === "password123") {
-      alert("Login successful!")
-      navigate("/employee-home")
+      toast.success("Login successful!")
+      // navigate("/employee-home")
     } else {
-      alert("Invalid email or password")
+      toast.error("Invalid email or password")
     }
   }
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center bg-gray-100">
+    <div className="w-screen h-full flex items-center justify-center ">
       <div
         className="border-1 shadow-lg w-full max-w-md p-8 space-y-6"
         style={{ background: lightBlue }}
@@ -61,7 +63,8 @@ const Login = () => {
             />
           </div>
 
-          <Button type="submit" className="w-full bg-[#ED8E6B] font-bold">
+          <Button type="submit" className="w-full bg-[#ED8E6B] font-bold"
+          >
             Login
           </Button>
         </form>

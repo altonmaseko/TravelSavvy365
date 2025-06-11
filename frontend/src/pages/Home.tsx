@@ -2,17 +2,17 @@ import { Button } from "@/components/ui/button"
 
 import logo from "@/assets/img/logo.png"
 import { useNavigate } from "react-router-dom"
-import useThemeStore from "./themeStore";
+import useThemeStore from "../states/themeStore";
 
 const Home = () => {
   const navigate = useNavigate();
 
-  const { blackBrown } = useThemeStore();
+  const { blackBrown, mainBlue } = useThemeStore();
 
   return (
     <div
 
-      className="h-screen w-screen  flex flex-col justify-between">
+      className="h-screen  flex flex-col justify-between">
 
       <section className="flex flex-col gap-6  h-full">
         <header
@@ -26,7 +26,9 @@ const Home = () => {
 
           {/* Right side of header */}
           <div>
-            <ul className="flex flex-row items-center gap-4 h-full  font-extrabold underline">
+            <ul
+              style={{ color: mainBlue }}
+              className="flex flex-row items-center gap-4 h-full  font-extrabold underline">
               <li>
                 <a href="">Pricing</a>
               </li>
@@ -34,7 +36,7 @@ const Home = () => {
                 <a href="">Features</a>
               </li>
               <li>
-                <a href="">About</a>
+                <a href="" onClick={() => navigate('/about')}>About</a>
               </li>
               <li>
                 <a href="">Contact</a>
@@ -62,14 +64,16 @@ const Home = () => {
               className="bg-[#ED8E6B] font-bold" onClick={() => navigate('/registration')} > Register  </Button>
             <Button
               style={{ backgroundColor: blackBrown }}
-              className="bg-[#ED8E6B] font-bold"> Login </Button>
+              className="bg-[#ED8E6B] font-bold" onClick={() => navigate('/login')} > Login </Button>
           </section>
         </main>
 
       </section>
 
 
-      <footer className="bg-gray-900 text-white px-6 py-10 w-full">
+      <footer
+        style={{ backgroundColor: mainBlue }}
+        className=" text-white px-6 py-10 w-full">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto justify-center m-auto">
 
           <div className="space-y-2">
