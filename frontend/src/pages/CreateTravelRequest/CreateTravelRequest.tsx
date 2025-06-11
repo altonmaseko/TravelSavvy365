@@ -35,7 +35,6 @@ import { Label } from "@radix-ui/react-label";
 import { useNavigate } from "react-router-dom";
 import UberBookingCard from "./UberBookingCard";
 import CarRentalBookingCard from "./CarRentalBookingCard";
-import { FcManager } from "react-icons/fc";
 import ShuttleBookingCard from "./ShuttleBookingCard";
 import FlightBookingCard from "./FlightBookingCard";
 

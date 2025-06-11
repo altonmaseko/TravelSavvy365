@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plane, MapPin, Calendar, Clock, Users, CreditCard, ArrowRightLeft, Luggage } from 'lucide-react';
+import { Plane, CreditCard, ArrowRightLeft, } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';

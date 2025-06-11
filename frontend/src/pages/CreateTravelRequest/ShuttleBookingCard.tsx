@@ -14,7 +14,7 @@ const ShuttleBookingCard = () => {
   const [bookingDate, setBookingDate] = useState('');
   const [pickupTime, setPickupTime] = useState('');
   const [passengers, setPassengers] = useState('1');
-  const [shuttleType, setShuttleType] = useState('Shared');
+  const [shuttleType] = useState('Shared');
   const [luggage, setLuggage] = useState('1');
   const [contactNumber, setContactNumber] = useState('');
   const [specialRequests, setSpecialRequests] = useState('');
