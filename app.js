@@ -51,6 +51,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/travel', travelRoutes);
 app.use('/api/booking', bookingRoutes);
 
+
 // Test route
 app.get('/api/test', (req, res) => {
     res.json({ message: 'Hello from the backend!' });
