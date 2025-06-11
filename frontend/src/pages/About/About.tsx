@@ -9,7 +9,6 @@ import {
   Link,
   Lock,
   ChevronRight,
-  Zap,
   Globe,
   TrendingUp,
   Star,
@@ -24,6 +23,8 @@ const useThemeStore = () => ({
   lightBlue: '#e0f2fe',
   redBrown: '#92400e'
 });
+
+import logo from "@/assets/img/logo.png"
 
 function About() {
   const { bondiBlue, blackBrown, mainBlue, redBrown } = useThemeStore();
@@ -150,9 +151,13 @@ function About() {
             <div className="flex justify-center items-center gap-6 mb-8">
               <div className="relative">
                 <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl flex items-center justify-center shadow-2xl">
-                  <Zap className="w-10 h-10 text-white" />
+                  {/* <Zap className="w-10 h-10 text-black" /> */}
+                  {/* logo */}
+                  <img src={logo} alt="Logo" className="absolute inset-0 w-full h-full object-cover" />
                 </div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                <div
+                  style={{ backgroundColor: bondiBlue }}
+                  className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center">
                   <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
                 </div>
               </div>
