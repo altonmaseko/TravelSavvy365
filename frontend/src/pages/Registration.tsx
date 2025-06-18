@@ -1,6 +1,10 @@
 
 import logo from "@/assets/img/logo.png"
 import { Button } from "@/components/ui/button"
+import { toast } from 'react-hot-toast';
+
+import axios from 'axios';
+// import api from "@/api";
 
 import {
   DropdownMenu,
@@ -23,7 +27,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@radix-ui/react-dropdown-menu"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { FaCloudUploadAlt } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 import useThemeStore from "../states/themeStore"
@@ -36,6 +40,41 @@ const Registration = () => {
   const navigate = useNavigate();
 
   const { lightBlue } = useThemeStore();
+
+
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [dob, setDob] = useState("");
+
+  const handleRegister = async () => {
+    try {
+      const response = await axios.post('http://localhost:3001/api/auth/register', {
+        "name": name + " " + surname,
+        "email": email,
+        "password": password,
+        "employeeType": "employee",
+      })
+
+      toast.success('Registration successful! You will be redirected to login.')
+      navigate("/login")
+
+    } catch (error) {
+      // check response code
+      if (axios.isAxiosError(error) && error.response) {
+        if (error.response.status === 409) {
+          toast.error(error.response.data.message || 'Email already exists. Please use a different email address.');
+        } else {
+          toast.error(error.response.data.message || 'An error occurred during registration. Please try again later.');
+        }
+      } else {
+        alert('An unexpected error occurred. Please try again later.')
+      }
+    }
+
+
+  }
 
 
   useEffect(() => {
@@ -60,10 +99,11 @@ const Registration = () => {
                 </div>
                 <hr />
 
-                <Input type="text" placeholder="Name" />
-                <Input type="text" placeholder="Surname" />
-                <Input type="email" placeholder="Email" />
-                <Input type="date" placeholder="Date of Birth" />
+                <Input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="Name" />
+                <Input value={surname} onChange={e => setSurname(e.target.value)} type="text" placeholder="Surname" />
+                <Input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="Email" />
+                <Input value={password} onChange={e => setPassword(e.target.value)} type="password" placeholder="password" />
+                <Input value={dob} onChange={e => setDob(e.target.value)} type="date" placeholder="Date of Birth" />
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -131,10 +171,7 @@ const Registration = () => {
               </div>
               <Button
                 className="bg-[#ED8E6B] font-bold self-end"
-                onClick={() => {
-                  alert("Registration sent. You will have access once Admin approves.")
-                  navigate('/employee-home')
-                }}
+                onClick={handleRegister}
               >
                 Send Registration
               </Button>

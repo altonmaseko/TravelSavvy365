@@ -4,6 +4,10 @@ import GoogleMapComponent from "./GoogleMapComponent"
 
 import { MdCarRental } from 'react-icons/md';
 
+import { toast } from 'react-hot-toast';
+
+import axios from 'axios';
+
 import {
   Select,
   SelectContent,
@@ -40,6 +44,14 @@ import FlightBookingCard from "./FlightBookingCard";
 
 const CreateTravelRequest = () => {
 
+  const [destination, setDestination] = useState<string>("")
+  const [startDate, setStartDate] = useState<Date>()
+  const [endDate, setEndDate] = useState<Date>()
+  const [purpose, setPurpose] = useState<string>("")
+  const [transportationType, setTransportationType] = useState<'uber' | 'shuttle' | 'rental' | 'flight'>("uber")
+  const [accommodationRequired, setAccommodationRequired] = useState<boolean>(false)
+  const [estimatedCost, setEstimatedCost] = useState<number>(0)
+  const [additionalNotes, setAdditionalNotes] = useState<string>("")
 
   const [date, setDate] = useState<Date>()
 
@@ -47,9 +59,9 @@ const CreateTravelRequest = () => {
 
   const [travelType, setTravelType] = useState<'uber' | 'shuttle' | 'rental' | 'flight'>("uber");
 
-  const [, setFlightCompany] = useState<'flysafair' | 'airlink' | 'lift'>("flysafair");
-  const [, setShuttleCompany] = useState<'intercape' | 'greyhound' | 'translux' | 'eldos' | 'citiliner' | 'bazbus'>("intercape");
-  const [, setCarRentalCompany] = useState<'avis' | 'hertz' | 'enterprise rent-a-car' | 'europcar'>("avis");
+  const [flightCompany, setFlightCompany] = useState<'flysafair' | 'airlink' | 'lift'>("flysafair");
+  const [shuttleCompany, setShuttleCompany] = useState<'intercape' | 'greyhound' | 'translux' | 'eldos' | 'citiliner' | 'bazbus'>("intercape");
+  const [carRentalCompany, setCarRentalCompany] = useState<'avis' | 'hertz' | 'enterprise rent-a-car' | 'europcar'>("avis");
 
   const handleTravelTypeChange = (travelType: 'uber' | 'shuttle' | 'rental' | 'flight', subType: string) => {
     setTravelType(travelType);
@@ -62,6 +74,21 @@ const CreateTravelRequest = () => {
     } else if (travelType === 'rental') {
       setCarRentalCompany(subType as 'avis' | 'hertz' | 'enterprise rent-a-car' | 'europcar');
     }
+  }
+
+  const handleSubmit = async () => {
+    const response = await axios.post('http://localhost:3001/api/travel/request', {
+      "destination": destination,
+      "startDate": startDate,
+      "endDate": "YYYY-MM-DD",
+      "purpose": "string",
+      "transportationType": "string",
+      "accommodationRequired": true,
+      "estimatedCost": 0,
+      "additionalNotes": "string"
+
+
+    })
   }
 
   useEffect(() => {
@@ -212,7 +239,7 @@ const CreateTravelRequest = () => {
             <Button className="flex flex-row gap-2 p-6" onClick={() => navigate('/hotel-booking')}> <p>Also Book Hotel</p> <FaArrowRight size={60} /></Button>
           </div>
 
-          <Button className="py-8 flex flex-row gap-4 bg-[#ED8E6B] font-bold"> <p>Submit Request </p> <LucideGitPullRequest size={40} /> </Button>
+          <Button onClick={handleSubmit} className="py-8 flex flex-row gap-4 bg-[#ED8E6B] font-bold"> <p>Submit Request </p> <LucideGitPullRequest size={40} /> </Button>
         </section>
       </main>
     </div>

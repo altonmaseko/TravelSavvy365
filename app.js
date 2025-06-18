@@ -4,13 +4,18 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import dotenv from "dotenv";
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
+
+
+
+
 
 // Import middleware
-import { 
-    requestLogger, 
-    errorHandler, 
-    rateLimit, 
-    corsHandler 
+import {
+    requestLogger,
+    errorHandler,
+    rateLimit,
+    corsHandler
 } from './src/middleware/middleware.js';
 
 // Import routes
@@ -19,6 +24,8 @@ import travelRoutes from './src/Routes/travel.js';
 import bookingRoutes from './src/Routes/booking.js';
 
 const app = express();
+
+app.use(cors());
 
 dotenv.config();
 
@@ -38,8 +45,8 @@ app.use(express.static(path.join(__dirname, 'frontend/dist')));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-    res.json({ 
-        status: 'OK', 
+    res.json({
+        status: 'OK',
         timestamp: new Date().toISOString(),
         uptime: process.uptime(),
         environment: process.env.NODE_ENV || 'development'
@@ -59,7 +66,7 @@ app.get('/api/test', (req, res) => {
 
 // API 404 handler
 app.use('/api/*', (req, res) => {
-    res.status(404).json({ 
+    res.status(404).json({
         message: 'API endpoint not found',
         path: req.path,
         method: req.method

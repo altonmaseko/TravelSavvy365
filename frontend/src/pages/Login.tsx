@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import useThemeStore from "../states/themeStore"
 import { toast } from 'react-hot-toast';
 
+import axios from 'axios';
 
 const Login = () => {
   const navigate = useNavigate()
@@ -15,15 +16,33 @@ const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Replace with actual login logic
-    if (email === "test@example.com" && password === "password123") {
-      toast.success("Login successful!")
-      // navigate("/employee-home")
-    } else {
-      toast.error("Invalid email or password")
+
+    try {
+      const response = await axios.post('http://localhost:3001/api/auth/login', {
+        "email": email,
+        "password": password,
+      })
+
+      if (response.data.success) {
+        localStorage.setItem("user", JSON.stringify(response.data.user))
+        toast.success("Login successful! Redirecting...")
+
+
+        navigate("/home")
+      } else {
+        toast.error("Login failed! Please check your credentials.")
+      }
+    } catch (error) {
+      // give error from response
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error(`Login failed: ${error.response.data.message || 'An error occurred'}`);
+      } else {
+        toast.error("Login failed! Please try again later.");
+      }
     }
+
   }
 
   return (
