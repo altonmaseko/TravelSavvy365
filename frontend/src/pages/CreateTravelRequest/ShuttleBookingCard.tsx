@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { MapPin, Users, Calendar, Clock, CreditCard, Bus } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -7,24 +7,41 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { useRequests } from '@/states/useRequests';
 
 const ShuttleBookingCard = () => {
-  const [pickupLocation, setPickupLocation] = useState('OR Tambo International Airport');
-  const [dropoffLocation, setDropoffLocation] = useState('Sandton City Mall');
-  const [bookingDate, setBookingDate] = useState('');
-  const [pickupTime, setPickupTime] = useState('');
-  const [passengers, setPassengers] = useState('1');
-  const [shuttleType] = useState('Shared');
-  const [luggage, setLuggage] = useState('1');
-  const [contactNumber, setContactNumber] = useState('');
-  const [specialRequests, setSpecialRequests] = useState('');
+  // const [pickupLocation, setPickupLocation] = useState('OR Tambo International Airport');
+  // const [dropoffLocation, setDropoffLocation] = useState('Sandton City Mall');
+  // const [bookingDate, setBookingDate] = useState('');
+  // const [pickupTime, setPickupTime] = useState('');
+  // const [passengers, setPassengers] = useState('1');
+  // const [shuttleType] = useState('Shared');
+  // const [luggage, setLuggage] = useState('1');
+  // const [contactNumber, setContactNumber] = useState('');
+  // const [specialRequests, setSpecialRequests] = useState('');
 
-  const calculatePrice = () => {
-    const basePrice = shuttleType === 'Private' ? 350 : 120;
-    const passengerMultiplier = shuttleType === 'Private' ? 1 : parseInt(passengers);
-    const luggageExtra = parseInt(luggage) > 2 ? (parseInt(luggage) - 2) * 25 : 0;
-    return (basePrice * passengerMultiplier) + luggageExtra;
-  };
+  const {
+    shuttleCompany, shuttleDate, shuttleDropOffLocation, shuttleLuggage,
+    shuttlePassengers, shuttlePickUpLocation, shuttlePickUpTime, shuttleSpecialRequests, shuttleTotalPrice,
+    setShuttleTotalPrice, setShuttleDate, setShuttleDropOffLocation, setShuttleLuggage,
+    setShuttlePassengers, setShuttlePickUpLocation, setShuttlePickUpTime, setShuttleSpecialRequests,
+    setShuttleCompany
+  } = useRequests();
+
+  useEffect(() => {
+    // Calculate price whenever the relevant fields change
+    const basePrice = shuttleCompany === 'intercape' ? 300 :
+      shuttleCompany === 'greyhound' ? 350 :
+        shuttleCompany === 'translux' ? 400 :
+          shuttleCompany === 'eldos' ? 250 :
+            shuttleCompany === 'citiliner' ? 280 :
+              shuttleCompany === 'bazbus' ? 200 : 0;
+
+    const luggageExtra = (shuttleLuggage ?? 0) > 2 ? ((shuttleLuggage ?? 0) - 2) * 25 : 0;
+    const price = (basePrice * (shuttlePassengers ?? 1)) + luggageExtra;
+
+    setShuttleTotalPrice(price);
+  }, [shuttleCompany, shuttlePassengers, shuttleLuggage, setShuttleTotalPrice]);
 
   return (
     <Card className="w-full max-w-4xl mx-auto">
@@ -47,8 +64,8 @@ const ShuttleBookingCard = () => {
                 <Label htmlFor="pickup">Pickup Location</Label>
                 <Input
                   id="pickup"
-                  value={pickupLocation}
-                  onChange={(e) => setPickupLocation(e.target.value)}
+                  value={shuttlePickUpLocation}
+                  onChange={(e) => setShuttlePickUpLocation?.(e.target.value)}
                   placeholder="Enter pickup location"
                 />
               </div>
@@ -61,8 +78,8 @@ const ShuttleBookingCard = () => {
                 <Label htmlFor="dropoff">Dropoff Location</Label>
                 <Input
                   id="dropoff"
-                  value={dropoffLocation}
-                  onChange={(e) => setDropoffLocation(e.target.value)}
+                  value={shuttleDropOffLocation}
+                  onChange={(e) => setShuttleDropOffLocation?.(e.target.value)}
                   placeholder="Enter dropoff location"
                 />
               </div>
@@ -77,8 +94,8 @@ const ShuttleBookingCard = () => {
                   <Input
                     id="date"
                     type="date"
-                    value={bookingDate}
-                    onChange={(e) => setBookingDate(e.target.value)}
+                    value={shuttleDate ? shuttleDate.toISOString().substring(0, 10) : ''}
+                    onChange={(e) => setShuttleDate?.(new Date(e.target.value))}
                   />
                 </div>
               </div>
@@ -90,57 +107,27 @@ const ShuttleBookingCard = () => {
                   <Input
                     id="time"
                     type="time"
-                    value={pickupTime}
-                    onChange={(e) => setPickupTime(e.target.value)}
+                    value={shuttlePickUpTime}
+                    onChange={(e) => setShuttlePickUpTime?.(e.target.value)}
                   />
                 </div>
               </div>
             </div>
 
-            {/* Contact Number */}
-            <div className="flex items-center space-x-2">
-              <div className="text-blue-600 text-xl">📱</div>
-              <div className="flex-1 space-y-2">
-                <Label htmlFor="contact">Contact Number</Label>
-                <Input
-                  id="contact"
-                  type="tel"
-                  value={contactNumber}
-                  onChange={(e) => setContactNumber(e.target.value)}
-                  placeholder="+27 XX XXX XXXX"
-                />
-              </div>
-            </div>
+
           </div>
 
           {/* Right Column */}
           <div className="space-y-4">
-            {/* Shuttle Type */}
-            {/* <div className="flex items-center space-x-2">
-              <Bus className="text-blue-600 text-xl" />
-              <div className="flex-1 space-y-2">
-                <Label>Shuttle Type</Label>
-                <Select value={shuttleType} onValueChange={setShuttleType}>
-                  <SelectTrigger className='bg-white'>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent className='bg-white'>
-                    <SelectItem value="Shared">Shared Shuttle</SelectItem>
-                    <SelectItem value="Private">Private Shuttle</SelectItem>
-                    <SelectItem value="Airport Express">Airport Express</SelectItem>
-                    <SelectItem value="Long Distance">Long Distance</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div> */}
-
             {/* Passengers and Luggage */}
             <div className="grid grid-cols-2 gap-4">
               <div className="flex items-center space-x-2">
                 <Users className="text-blue-600 text-xl" />
                 <div className="flex-1 space-y-2">
                   <Label>Passengers</Label>
-                  <Select value={passengers} onValueChange={setPassengers}>
+                  <Select value={shuttlePassengers?.toString()} onValueChange={value =>
+                    setShuttlePassengers?.(Number(value))
+                  }>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -157,7 +144,10 @@ const ShuttleBookingCard = () => {
                 <div className="text-blue-600 text-xl">🧳</div>
                 <div className="flex-1 space-y-2">
                   <Label>Luggage</Label>
-                  <Select value={luggage} onValueChange={setLuggage}>
+                  <Select
+                    value={shuttleLuggage?.toString()}
+                    onValueChange={value => setShuttleLuggage?.(Number(value))}
+                  >
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -180,8 +170,8 @@ const ShuttleBookingCard = () => {
                 <Label htmlFor="requests">Special Requests</Label>
                 <Textarea
                   id="requests"
-                  value={specialRequests}
-                  onChange={(e) => setSpecialRequests(e.target.value)}
+                  value={shuttleSpecialRequests}
+                  onChange={(e) => setShuttleSpecialRequests?.(e.target.value)}
                   placeholder="Child seat, wheelchair accessible, etc."
                   rows={3}
                 />
@@ -194,16 +184,18 @@ const ShuttleBookingCard = () => {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="font-medium">Service Type:</span>
-                    <span className="text-muted-foreground">{shuttleType}</span>
+                    <span className="text-muted-foreground">{shuttleCompany}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="font-medium">Passengers:</span>
-                    <span className="text-muted-foreground">{passengers}</span>
+                    <span className="text-muted-foreground">{shuttlePassengers}</span>
                   </div>
-                  {parseInt(luggage) > 2 && (
+                  {(shuttleLuggage ?? 0) > 2 && (
                     <div className="flex items-center justify-between">
                       <span className="font-medium">Extra Luggage:</span>
-                      <span className="text-muted-foreground">R{(parseInt(luggage) - 2) * 25}</span>
+                      <span className="text-muted-foreground">
+                        R{((shuttleLuggage ?? 0) - 2) * 25}
+                      </span>
                     </div>
                   )}
                   <Separator />
@@ -212,7 +204,7 @@ const ShuttleBookingCard = () => {
                       <CreditCard className="text-green-600" />
                       Total Price:
                     </span>
-                    <span className="text-xl font-bold text-green-600">R{calculatePrice()}</span>
+                    <span className="text-xl font-bold text-green-600">R{shuttleTotalPrice}</span>
                   </div>
                 </div>
               </CardContent>

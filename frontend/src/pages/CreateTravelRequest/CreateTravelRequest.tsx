@@ -41,12 +41,13 @@ import UberBookingCard from "./UberBookingCard";
 import CarRentalBookingCard from "./CarRentalBookingCard";
 import ShuttleBookingCard from "./ShuttleBookingCard";
 import FlightBookingCard from "./FlightBookingCard";
+import { useRequests } from "@/states/useRequests";
 
 const CreateTravelRequest = () => {
 
-  const [destination, setDestination] = useState<string>("")
-  const [startDate, setStartDate] = useState<Date>()
-  const [endDate, setEndDate] = useState<Date>()
+  // const [destination, setDestination] = useState<string>("")
+  // const [startDate, setStartDate] = useState<Date>()
+  // const [endDate, setEndDate] = useState<Date>()
   const [purpose, setPurpose] = useState<string>("")
   const [transportationType, setTransportationType] = useState<'uber' | 'shuttle' | 'rental' | 'flight'>("uber")
   const [accommodationRequired, setAccommodationRequired] = useState<boolean>(false)
@@ -59,9 +60,8 @@ const CreateTravelRequest = () => {
 
   const [travelType, setTravelType] = useState<'uber' | 'shuttle' | 'rental' | 'flight'>("uber");
 
-  const [flightCompany, setFlightCompany] = useState<'flysafair' | 'airlink' | 'lift'>("flysafair");
-  const [shuttleCompany, setShuttleCompany] = useState<'intercape' | 'greyhound' | 'translux' | 'eldos' | 'citiliner' | 'bazbus'>("intercape");
-  const [carRentalCompany, setCarRentalCompany] = useState<'avis' | 'hertz' | 'enterprise rent-a-car' | 'europcar'>("avis");
+
+  const { shuttleCompany, flightCompany, rentalCompany, setFlightCompany, setRentalCompany, setShuttleCompany } = useRequests();
 
   const handleTravelTypeChange = (travelType: 'uber' | 'shuttle' | 'rental' | 'flight', subType: string) => {
     setTravelType(travelType);
@@ -72,23 +72,23 @@ const CreateTravelRequest = () => {
     } else if (travelType === 'shuttle') {
       setShuttleCompany(subType as 'intercape' | 'greyhound' | 'translux' | 'eldos' | 'citiliner' | 'bazbus');
     } else if (travelType === 'rental') {
-      setCarRentalCompany(subType as 'avis' | 'hertz' | 'enterprise rent-a-car' | 'europcar');
+      setRentalCompany(subType as 'avis' | 'hertz' | 'enterprise rent-a-car' | 'europcar');
     }
   }
 
   const handleSubmit = async () => {
-    const response = await axios.post('http://localhost:3001/api/travel/request', {
-      "destination": destination,
-      "startDate": startDate,
-      "endDate": "YYYY-MM-DD",
-      "purpose": "string",
-      "transportationType": "string",
-      "accommodationRequired": true,
-      "estimatedCost": 0,
-      "additionalNotes": "string"
+    // const response = await axios.post('http://localhost:3001/api/travel/request', {
+    //   "destination": destination,
+    //   "startDate": startDate,
+    //   "endDate": endDate,
+    //   "purpose": purpose,
+    //   "transportationType": transportationType,
+    //   "accommodationRequired": true,
+    //   "estimatedCost": 0,
+    //   "additionalNotes": additionalNotes
 
 
-    })
+    // })
   }
 
   useEffect(() => {
@@ -169,24 +169,25 @@ const CreateTravelRequest = () => {
 
           <div className="flex flex-col rounded-xl grow p-2 ">
             {
-              travelType === 'uber' ? (
-                <UberBookingCard />
+              travelType === 'shuttle' ? (
+                <ShuttleBookingCard />
               ) : travelType === 'rental' ? (
                 <CarRentalBookingCard />
               ) : travelType === 'flight' ? (
                 <FlightBookingCard />
-                // <div className="flex flex-col items-center justify-center gap-4">
-                //   <h3 className="text-2xl font-bold">Flight Booking Coming Soon!</h3>
-                //   <FcManager size={100} />
-                // </div>
+              ) : travelType === 'uber' ? (
+                <UberBookingCard />
               ) : (
-                <ShuttleBookingCard />
-                // <div className="flex flex-col items-center justify-center gap-4">
-                //   <h3 className="text-2xl font-bold">Shuttle Booking Coming Soon!</h3>
-                //   <FcManager size={100} />
-                // </div>
+                <div className="flex items-center justify-center h-full">
+                  <p className="text-gray-500">Please select a transportation option.</p>
+                </div>
               )
             }
+
+            {/* <ShuttleBookingCard /> */}
+            {/* <CarRentalBookingCard /> */}
+            {/* <FlightBookingCard /> */}
+            {/* <UberBookingCard /> */}
           </div>
 
         </section>

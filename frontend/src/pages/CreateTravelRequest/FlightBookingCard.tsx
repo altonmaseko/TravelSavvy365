@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Plane, CreditCard, ArrowRightLeft, } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -8,23 +8,31 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { useRequests } from '@/states/useRequests';
 
 const FlightBookingCard = () => {
-  const [tripType, setTripType] = useState('round-trip');
-  const [departureCity, setDepartureCity] = useState('Cape Town (CPT)');
-  const [arrivalCity, setArrivalCity] = useState('Johannesburg (JNB)');
-  const [departureDate, setDepartureDate] = useState('');
-  const [returnDate, setReturnDate] = useState('');
-  const [departureTime, setDepartureTime] = useState('morning');
-  const [returnTime, setReturnTime] = useState('evening');
-  const [adults, setAdults] = useState('1');
-  const [children, setChildren] = useState('0');
-  const [infants, setInfants] = useState('0');
-  const [classType, setClassType] = useState('Economy');
-  const [luggage, setLuggage] = useState('1');
-  const [contactEmail, setContactEmail] = useState('');
-  const [contactNumber, setContactNumber] = useState('');
-  const [specialRequests, setSpecialRequests] = useState('');
+  // const [tripType, setTripType] = useState('round-trip');
+  // const [departureCity, setDepartureCity] = useState('Cape Town (CPT)');
+  // const [arrivalCity, setArrivalCity] = useState('Johannesburg (JNB)');
+  // const [departureDate, setDepartureDate] = useState('');
+  // const [returnDate, setReturnDate] = useState('');
+  // const [departureTime, setDepartureTime] = useState('morning');
+  // const [returnTime, setReturnTime] = useState('evening');
+  // const [adults, setAdults] = useState('1');
+  // const [children, setChildren] = useState('0');
+  // const [infants, setInfants] = useState('0');
+  // const [classType, setClassType] = useState('Economy');
+  // const [luggage, setLuggage] = useState('1');
+  // const [contactEmail, setContactEmail] = useState('');
+  // const [contactNumber, setContactNumber] = useState('');
+  // const [specialRequests, setSpecialRequests] = useState('');
+
+  const { flightAdultPassengers, flightCheckedBags, flightDepartureCity, flightReturnCity, flightCompany, flightEstimatedTotalPrice, setFlightEstimatedTotalPrice,
+    flightChildPassengers, flightClass, flightDepartureDate, flightDepartureTimePreference, flightInfantPassengers,
+    flightReturnDate, flightReturnTimePreference, flightSpecialRequests, flightTripType, setFlightAdultPassengers, setFlightDepartureCity, setFlightReturnCity, setFlightCompany,
+    setFlightCheckedBags, setFlightChildPassengers, setFlightClass, setFlightDepartureDate, setFlightDepartureTimePreference,
+    setFlightInfantPassengers, setFlightReturnDate, setFlightReturnTimePreference, setFlightSpecialRequests, setFlightTripType
+  } = useRequests();
 
   // South African cities with airport codes
   const southAfricanCities = [
@@ -43,19 +51,44 @@ const FlightBookingCard = () => {
     'Upington (UTN)'
   ];
 
-  const calculatePrice = () => {
-    const basePrice = classType === 'Business' ? 2500 : classType === 'Premium Economy' ? 1800 : 1200;
-    const totalPassengers = parseInt(adults) + parseInt(children) + (parseInt(infants) * 0.1);
-    const tripMultiplier = tripType === 'round-trip' ? 2 : 1;
-    const luggageExtra = parseInt(luggage) > 1 ? (parseInt(luggage) - 1) * 350 : 0;
 
-    return Math.round((basePrice * totalPassengers * tripMultiplier) + luggageExtra);
-  };
+  useEffect(() => {
+    const basePrice =
+      flightClass === 'Business'
+        ? 2500
+        : flightClass === 'Premium Economy'
+          ? 1800
+          : 1200;
+
+    const totalPassengers =
+      (flightAdultPassengers || 0) +
+      (flightChildPassengers || 0) +
+      ((flightInfantPassengers || 0) * 0.1); // likely you meant infants are 10% of price
+
+    const tripMultiplier = flightTripType === 'round-trip' ? 2 : 1;
+    const luggageExtra = (flightCheckedBags || 0) > 1 ? ((flightCheckedBags || 0) - 1) * 350 : 0;
+
+    const result = Math.round((basePrice * totalPassengers * tripMultiplier) + luggageExtra);
+
+    setFlightEstimatedTotalPrice(result);
+  }, [
+    flightClass,
+    flightAdultPassengers,
+    flightChildPassengers,
+    flightInfantPassengers,
+    flightTripType,
+    flightCheckedBags,
+    setFlightEstimatedTotalPrice,
+  ]);
 
   const swapCities = () => {
-    const temp = departureCity;
-    setDepartureCity(arrivalCity);
-    setArrivalCity(temp);
+    const temp = flightDepartureCity || ''; // Provide a fallback value
+    if (setFlightDepartureCity) {
+      setFlightDepartureCity(flightReturnCity || ''); // Provide a fallback value
+    }
+    if (setFlightReturnCity) {
+      setFlightReturnCity(temp);
+    }
   };
 
   return (
@@ -73,7 +106,10 @@ const FlightBookingCard = () => {
           {/* Trip Type */}
           <div className="space-y-3">
             <Label className="text-base font-medium">Trip Type</Label>
-            <RadioGroup value={tripType} onValueChange={setTripType} className="flex gap-6">
+            <RadioGroup
+              value={flightTripType}
+              onValueChange={(value: "one-way" | "multi-city" | "round-trip") => setFlightTripType ? setFlightTripType(value) : undefined}
+              className="flex gap-6">
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="round-trip" id="round-trip" />
                 <Label htmlFor="round-trip">Round Trip</Label>
@@ -97,7 +133,9 @@ const FlightBookingCard = () => {
                 <div className="flex items-center gap-2 flex-wrap">
                   <div className="flex-1 space-y-2">
                     <Label htmlFor="departure">From</Label>
-                    <Select value={departureCity} onValueChange={setDepartureCity}>
+                    <Select value={flightDepartureCity}
+                      onValueChange={(value: string) => setFlightDepartureCity ? setFlightDepartureCity(value) : undefined
+                      }>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -120,7 +158,10 @@ const FlightBookingCard = () => {
 
                   <div className="flex-1 space-y-2">
                     <Label htmlFor="arrival">To</Label>
-                    <Select value={arrivalCity} onValueChange={setArrivalCity}>
+                    <Select value={flightReturnCity}
+                      onValueChange={
+                        (value: string) => setFlightReturnCity ? setFlightReturnCity(value) : undefined
+                      }>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -141,19 +182,19 @@ const FlightBookingCard = () => {
                   <Input
                     id="departure-date"
                     type="date"
-                    value={departureDate}
-                    onChange={(e) => setDepartureDate(e.target.value)}
+                    value={flightDepartureDate ? flightDepartureDate.toISOString().split('T')[0] : ''} // Convert Date to string for input
+                    onChange={(e) => setFlightDepartureDate ? setFlightDepartureDate(new Date(e.target.value)) : undefined}
                   />
                 </div>
 
-                {tripType === 'round-trip' && (
+                {flightTripType === 'round-trip' && (
                   <div className="space-y-2">
                     <Label htmlFor="return-date">Return Date</Label>
                     <Input
                       id="return-date"
                       type="date"
-                      value={returnDate}
-                      onChange={(e) => setReturnDate(e.target.value)}
+                      value={flightReturnDate ? flightReturnDate.toISOString().split('T')[0] : ''} // Convert Date to string for input
+                      onChange={(e) => setFlightReturnDate ? setFlightReturnDate(new Date(e.target.value)) : undefined}
                     />
                   </div>
                 )}
@@ -163,7 +204,9 @@ const FlightBookingCard = () => {
               <div className="flex gap-4 flex-wrap">
                 <div className="space-y-2">
                   <Label>Departure Time Preference</Label>
-                  <Select value={departureTime} onValueChange={setDepartureTime}>
+                  <Select value={flightDepartureTimePreference} onValueChange={
+                    (value: string) => setFlightDepartureTimePreference ? setFlightDepartureTimePreference(value as 'morning' | 'afternoon' | 'evening' | 'flexible') : undefined
+                  }>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -177,10 +220,12 @@ const FlightBookingCard = () => {
                   </Select>
                 </div>
 
-                {tripType === 'round-trip' && (
+                {flightTripType === 'round-trip' && (
                   <div className="space-y-2">
                     <Label>Return Time Preference</Label>
-                    <Select value={returnTime} onValueChange={setReturnTime}>
+                    <Select value={flightReturnTimePreference} onValueChange={
+                      (value: "flexible" | "morning" | "afternoon" | "evening" | "early-morning") => setFlightReturnTimePreference ? setFlightReturnTimePreference(value as 'morning' | 'afternoon' | 'evening' | 'flexible') : undefined
+                    }>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -197,7 +242,7 @@ const FlightBookingCard = () => {
               </div>
 
               {/* Contact Information */}
-              <div className="space-y-4">
+              {/* <div className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Address</Label>
                   <Input
@@ -219,7 +264,7 @@ const FlightBookingCard = () => {
                     placeholder="+27 XX XXX XXXX"
                   />
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Right Column */}
@@ -230,7 +275,9 @@ const FlightBookingCard = () => {
                 <div className="grid grid-cols-3 gap-4">
                   <div className="space-y-2">
                     <Label>Adults (12+)</Label>
-                    <Select value={adults} onValueChange={setAdults}>
+                    <Select value={flightAdultPassengers?.toString()} onValueChange={
+                      (value: string) => setFlightAdultPassengers ? setFlightAdultPassengers(parseInt(value)) : undefined
+                    }>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -244,7 +291,9 @@ const FlightBookingCard = () => {
 
                   <div className="space-y-2">
                     <Label>Children (2-11)</Label>
-                    <Select value={children} onValueChange={setChildren}>
+                    <Select value={flightChildPassengers?.toString()} onValueChange={
+                      (value: string) => setFlightChildPassengers ? setFlightChildPassengers(parseInt(value)) : undefined
+                    }>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -258,7 +307,9 @@ const FlightBookingCard = () => {
 
                   <div className="space-y-2">
                     <Label>Infants (0-2)</Label>
-                    <Select value={infants} onValueChange={setInfants}>
+                    <Select value={flightInfantPassengers?.toString()} onValueChange={
+                      (value: string) => setFlightInfantPassengers ? setFlightInfantPassengers(parseInt(value)) : undefined
+                    }>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -276,7 +327,9 @@ const FlightBookingCard = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Class</Label>
-                  <Select value={classType} onValueChange={setClassType}>
+                  <Select value={flightClass} onValueChange={
+                    setFlightClass ? (value: string) => setFlightClass(value as 'Economy' | 'Premium Economy' | 'Business') : undefined
+                  }>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -290,7 +343,9 @@ const FlightBookingCard = () => {
 
                 <div className="space-y-2">
                   <Label>Checked Bags</Label>
-                  <Select value={luggage} onValueChange={setLuggage}>
+                  <Select value={flightCheckedBags?.toString()} onValueChange={
+                    (value: string) => setFlightCheckedBags ? setFlightCheckedBags(parseInt(value)) : undefined
+                  }>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -310,8 +365,8 @@ const FlightBookingCard = () => {
                 <Label htmlFor="special-requests">Special Requests</Label>
                 <Textarea
                   id="special-requests"
-                  value={specialRequests}
-                  onChange={(e) => setSpecialRequests(e.target.value)}
+                  value={flightSpecialRequests}
+                  onChange={(e) => setFlightSpecialRequests ? setFlightSpecialRequests(e.target.value) : undefined}
                   placeholder="Meal preferences, wheelchair assistance, etc."
                   rows={3}
                 />
@@ -323,24 +378,24 @@ const FlightBookingCard = () => {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="font-medium">Trip Type:</span>
-                      <span className="text-muted-foreground capitalize">{tripType.replace('-', ' ')}</span>
+                      <span className="text-muted-foreground capitalize">{flightTripType?.replace('-', ' ') || 'Not Specified'}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-medium">Class:</span>
-                      <span className="text-muted-foreground">{classType}</span>
+                      <span className="text-muted-foreground">{flightClass}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="font-medium">Passengers:</span>
                       <span className="text-muted-foreground">
-                        {adults} Adult{adults !== '1' ? 's' : ''}
-                        {children !== '0' && `, ${children} Child${children !== '1' ? 'ren' : ''}`}
-                        {infants !== '0' && `, ${infants} Infant${infants !== '1' ? 's' : ''}`}
+                        {flightAdultPassengers} Adult{flightAdultPassengers !== 1 ? 's' : ''}
+                        {flightChildPassengers !== 0 && `, ${flightChildPassengers} Child${flightChildPassengers !== 1 ? 'ren' : ''}`}
+                        {flightInfantPassengers !== 0 && `, ${flightInfantPassengers} Infant${flightInfantPassengers !== 1 ? 's' : ''}`}
                       </span>
                     </div>
-                    {parseInt(luggage) > 1 && (
+                    {(flightCheckedBags ?? 0) > 1 && (
                       <div className="flex items-center justify-between">
                         <span className="font-medium">Extra Luggage:</span>
-                        <span className="text-muted-foreground">R{(parseInt(luggage) - 1) * 350}</span>
+                        <span className="text-muted-foreground">R{((flightCheckedBags ?? 0) - 1) * 350}</span>
                       </div>
                     )}
                     <Separator />
@@ -349,7 +404,7 @@ const FlightBookingCard = () => {
                         <CreditCard className="text-green-600" />
                         Estimated Total:
                       </span>
-                      <span className="text-xl font-bold text-green-600">R{calculatePrice()}</span>
+                      <span className="text-xl font-bold text-green-600">R{flightEstimatedTotalPrice}</span>
                     </div>
                     <p className="text-xs text-muted-foreground">
                       *Final price may vary based on airline, taxes, and fees
