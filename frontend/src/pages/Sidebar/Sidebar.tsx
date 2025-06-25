@@ -26,7 +26,7 @@ const Sidebar = () => {
 
   return (
     <motion.div
-      className="h-full bg-gray-100 text-lg py-4 px-2 flex flex-col gap-6 shadow-md"
+      className="h-full bg-gray-100 text-lg  py-4 px-2 flex flex-col gap-6 shadow-md"
       animate={isOpen ? "open" : "collapsed"}
       variants={sidebarVariants}
     >
