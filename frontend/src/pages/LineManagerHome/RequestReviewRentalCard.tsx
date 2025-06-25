@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import toast from 'react-hot-toast';
 
 export interface RentalRequestData {
   id?: string;
@@ -41,20 +42,20 @@ const RequestReviewRentalCard: React.FC<RequestReviewRentalCardProps> = ({
     if (request.id && onApprove) {
       onApprove(request.id);
     } else {
-      alert(`Locally approved. ${request.employeeName} will be notified.`);
+      toast.success(`Locally approved. ${request.employeeName} will be notified.`);
     }
   };
 
   const handleReject = () => {
     if (!rejectReason.trim()) {
-      alert('Please provide a reason for rejection.');
+      toast.error('Please provide a reason for rejection.');
       return;
     }
 
     if (request.id && onReject) {
       onReject(request.id, rejectReason);
     } else {
-      alert(`Locally rejected. ${request.employeeName} will be notified.`);
+      toast.success(`Locally rejected. ${request.employeeName} will be notified.`);
     }
 
     setRejectReason('');
@@ -62,14 +63,14 @@ const RequestReviewRentalCard: React.FC<RequestReviewRentalCardProps> = ({
 
   const handleRequestInfo = () => {
     if (!additionalInfoRequest.trim()) {
-      alert('Please specify what additional information is required.');
+      toast.error('Please specify what additional information is required.');
       return;
     }
 
     if (request.id && onRequestInfo) {
       onRequestInfo(request.id, additionalInfoRequest);
     } else {
-      alert(`Info request sent locally. ${request.employeeName} will be notified.`);
+      toast.success(`Info request sent locally. ${request.employeeName} will be notified.`);
     }
 
     setAdditionalInfoRequest('');

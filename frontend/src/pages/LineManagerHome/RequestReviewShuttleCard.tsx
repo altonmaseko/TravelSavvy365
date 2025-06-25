@@ -12,6 +12,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 export interface ShuttleRequestData {
   id?: string;
@@ -50,20 +51,20 @@ const RequestReviewShuttleCard: React.FC<RequestReviewShuttleCardProps> = ({
     if (request.id && onApprove) {
       onApprove(request.id);
     } else {
-      alert(`Locally approved. ${request.employeeName} will be notified.`);
+      toast.success(`Locally approved. ${request.employeeName} will be notified.`);
     }
   };
 
   const handleReject = () => {
     if (!rejectReason.trim()) {
-      alert('Please provide a reason for rejection.');
+      toast.error('Please provide a reason for rejection.');
       return;
     }
 
     if (request.id && onReject) {
       onReject(request.id, rejectReason);
     } else {
-      alert(`Locally rejected. ${request.employeeName} will be notified.`);
+      toast.success(`Locally rejected. ${request.employeeName} will be notified.`);
     }
 
     setRejectReason('');
@@ -71,14 +72,14 @@ const RequestReviewShuttleCard: React.FC<RequestReviewShuttleCardProps> = ({
 
   const handleRequestInfo = () => {
     if (!additionalInfoRequest.trim()) {
-      alert('Please specify what additional information is required.');
+      toast.error('Please specify what additional information is required.');
       return;
     }
 
     if (request.id && onRequestInfo) {
       onRequestInfo(request.id, additionalInfoRequest);
     } else {
-      alert(`Info request sent locally. ${request.employeeName} will be notified.`);
+      toast.success(`Info request sent locally. ${request.employeeName} will be notified.`);
     }
 
     setAdditionalInfoRequest('');

@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/dialog';
 import useThemeStore from '@/states/themeStore';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 
 export interface UberRequestData {
   id?: string;
@@ -54,34 +55,38 @@ const RequestReviewUberCard: React.FC<RequestReviewUberCardProps> = ({
     if (request.id && onApprove) {
       onApprove(request.id);
     } else {
-      alert(`Approval processed locally. ${request.employeeName} will be notified.`);
+
+
+      toast.success(`Approval processed locally. ${request.employeeName} will be notified.`);
+
+
     }
   };
 
   const handleReject = () => {
     if (!rejectReason.trim()) {
-      alert('Please provide a reason for rejection.');
+      toast.error('Please provide a reason for rejection.');
       return;
     }
 
     if (request.id && onReject) {
       onReject(request.id, rejectReason);
     } else {
-      alert(`Rejection processed locally. ${request.employeeName} will be notified.`);
+      toast.success(`Rejection processed locally. ${request.employeeName} will be notified.`);
     }
     setRejectReason('');
   };
 
   const handleRequestInfo = () => {
     if (!additionalInfoRequest.trim()) {
-      alert('Please specify the additional information required.');
+      toast.error('Please specify the additional information required.');
       return;
     }
 
     if (request.id && onRequestInfo) {
       onRequestInfo(request.id, additionalInfoRequest);
     } else {
-      alert(`Info request processed locally. ${request.employeeName} will be notified.`);
+      toast.success(`Info request processed locally. ${request.employeeName} will be notified.`);
     }
     setAdditionalInfoRequest('');
   };

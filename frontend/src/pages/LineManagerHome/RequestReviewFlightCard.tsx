@@ -12,6 +12,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 export interface FlightRequestData {
   id?: string;
@@ -56,20 +57,20 @@ const RequestReviewFlightCard: React.FC<RequestReviewFlightCardProps> = ({
     if (request.id && onApprove) {
       onApprove(request.id);
     } else {
-      alert(`Approved locally. ${request.employeeName} will be notified.`);
+      toast.success(`Approved locally. ${request.employeeName} will be notified.`);
     }
   };
 
   const handleReject = () => {
     if (!rejectReason.trim()) {
-      alert('Please provide a reason for rejection.');
+      toast.error('Please provide a reason for rejection.');
       return;
     }
 
     if (request.id && onReject) {
       onReject(request.id, rejectReason);
     } else {
-      alert(`Rejected locally. ${request.employeeName} will be notified.`);
+      toast.success(`Rejected locally. ${request.employeeName} will be notified.`);
     }
 
     setRejectReason('');
@@ -77,14 +78,14 @@ const RequestReviewFlightCard: React.FC<RequestReviewFlightCardProps> = ({
 
   const handleRequestInfo = () => {
     if (!additionalInfoRequest.trim()) {
-      alert('Please specify what additional information is required.');
+      toast.error('Please specify what additional information is required.');
       return;
     }
 
     if (request.id && onRequestInfo) {
       onRequestInfo(request.id, additionalInfoRequest);
     } else {
-      alert(`Info requested locally. ${request.employeeName} will be notified.`);
+      toast.success(`Info requested locally. ${request.employeeName} will be notified.`);
     }
 
     setAdditionalInfoRequest('');
