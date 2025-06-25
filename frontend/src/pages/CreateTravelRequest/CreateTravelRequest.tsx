@@ -127,7 +127,6 @@ const CreateTravelRequest = () => {
       } else {
         toast.error("Request failed! Please try again later.");
       }
-
     }
 
   }
@@ -143,8 +142,6 @@ const CreateTravelRequest = () => {
   return (
 
     <div className="flex flex-col">
-
-
       <main className="min-h-screen flex flex-row gap-2 p-1">
         {/* left section */}
         <section className="flex flex-col w-[60vw]  p-2 gap-4">
