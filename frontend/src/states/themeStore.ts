@@ -7,7 +7,7 @@ interface ThemeStore {
   lightBlue: string;
   blackBrown: string;
   redBrown: string;
-
+  brightBlue: string;
 
   setmainBlue: (color: string) => void;
   setLightBlue: (color: string) => void;
@@ -22,12 +22,14 @@ const useThemeStore = create<ThemeStore>((set) => ({
   lightBlue: '#ABDBF6',
   blackBrown: '#2D3319',
   redBrown: '#45062e',
+  brightBlue: "#00a6fb",
 
   setmainBlue: (color: string) => set({ mainBlue: color }),
   setLightBlue: (color: string) => set({ lightBlue: color }),
   setBlackBrown: (color: string) => set({ blackBrown: color }),
   setBondiBlue: (color: string) => set({ bondiBlue: color }),
-  setRedBrown: (color: string) => set({ redBrown: color })
+  setRedBrown: (color: string) => set({ redBrown: color }),
+  setBrightBlue: (color: string) => set({ brightBlue: color }),
 }));
 
 export default useThemeStore;

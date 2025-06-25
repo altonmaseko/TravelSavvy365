@@ -90,7 +90,7 @@ const Registration = () => {
           {/* First Slide */}
           <CarouselItem className="w-full">
             <main
-              style={{ background: lightBlue }}
+              // style={{ background: lightBlue }}
               className="flex flex-col gap-4 p-2 w-full h-full justify-between border-1">
               <section className="flex flex-col gap-4 rounded-xl w-full">
                 <div className="flex gap-4 items-center">
@@ -148,7 +148,7 @@ const Registration = () => {
           <CarouselItem
             className="w-full">
             <section
-              style={{ background: lightBlue }}
+              // style={{ background: lightBlue }}
 
               className="flex-1 flex flex-col items-center justify-center gap-4 w-full border-1 p-2">
               <div className="h-[400px] w-[400px] rounded-full border-2 border-black relative overflow-hidden">

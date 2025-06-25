@@ -11,7 +11,7 @@ import axios from 'axios';
 
 const Login = () => {
   const navigate = useNavigate()
-  const { lightBlue } = useThemeStore()
+  // const { lightBlue, mainBlue, bondiBlue, brightBlue } = useThemeStore()
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -49,7 +49,6 @@ const Login = () => {
     <div className="w-screen h-full flex items-center justify-center ">
       <div
         className="border-1 shadow-lg w-full max-w-md p-8 space-y-6"
-        style={{ background: lightBlue }}
       >
         <div className="flex items-center gap-3">
           <img src={logo} width={40} height={40} alt="Logo" />

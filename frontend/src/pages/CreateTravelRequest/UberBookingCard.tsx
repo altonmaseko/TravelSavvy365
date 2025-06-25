@@ -89,7 +89,7 @@ const UberBookingCard = () => {
         <div className="flex items-center space-x-2">
           <MdPunchClock className="text-xl text-gray-600" />
           <input
-            type="datetime-local"
+            type="time"
             value={uberPickUpTime}
             onChange={(e) => setUberPickUpTime ? setUberPickUpTime(e.target.value) : null}
             className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
