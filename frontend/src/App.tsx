@@ -42,7 +42,7 @@ function App() {
       {showHeader && <header
         // add bottom shadow
         style={{ borderColor: blackBrown, backgroundColor: mainBlue, boxShadow: `0px 0.5px 10px black` }}
-        className="flex flex-row justify-between items-center w-full  py-2 px-4 text-white mb-2">
+        className="flex flex-row justify-between items-center w-full  py-2 px-4 text-white ">
 
         {/* left side of header */}
         <div className="flex flex-row gap-2 p-2 items-center">

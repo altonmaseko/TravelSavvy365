@@ -44,24 +44,15 @@ import FlightBookingCard from "./FlightBookingCard";
 import { useRequests } from "@/states/useRequests";
 
 const CreateTravelRequest = () => {
-
-  // const [destination, setDestination] = useState<string>("")
-  // const [startDate, setStartDate] = useState<Date>()
-  // const [endDate, setEndDate] = useState<Date>()
-  const [purpose, setPurpose] = useState<string>("")
-  const [transportationType, setTransportationType] = useState<'uber' | 'shuttle' | 'rental' | 'flight'>("uber")
-  const [accommodationRequired, setAccommodationRequired] = useState<boolean>(false)
-  const [estimatedCost, setEstimatedCost] = useState<number>(0)
-  const [additionalNotes, setAdditionalNotes] = useState<string>("")
-
-  const [date, setDate] = useState<Date>()
-
   const navigate = useNavigate()
+
+  const [reasonForTravel, setReasonForTravel] = useState<string>("")
 
   const [travelType, setTravelType] = useState<'uber' | 'shuttle' | 'rental' | 'flight'>("uber");
 
 
   const { shuttleCompany, flightCompany, rentalCompany, setFlightCompany, setRentalCompany, setShuttleCompany } = useRequests();
+  const requests = useRequests();
 
   const handleTravelTypeChange = (travelType: 'uber' | 'shuttle' | 'rental' | 'flight', subType: string) => {
     setTravelType(travelType);
@@ -77,19 +68,70 @@ const CreateTravelRequest = () => {
   }
 
   const handleSubmit = async () => {
-    // const response = await axios.post('http://localhost:3001/api/travel/request', {
-    //   "destination": destination,
-    //   "startDate": startDate,
-    //   "endDate": endDate,
-    //   "purpose": purpose,
-    //   "transportationType": transportationType,
-    //   "accommodationRequired": true,
-    //   "estimatedCost": 0,
-    //   "additionalNotes": additionalNotes
+
+    console.log("Submitting travel request...");
+
+    let destination =
+      travelType === 'uber' ? requests.uberDropOffLocation :
+        travelType === 'flight' ? requests.flightReturnCity :
+          travelType === 'shuttle' ? requests.shuttlePickUpLocation :
+            travelType === 'rental' ? requests.rentalPickUpLocation :
+              'unknown';
+    let startDate =
+      travelType === 'uber' ? requests.uberDate :
+        travelType === 'flight' ? requests.flightDepartureDate :
+          travelType === 'shuttle' ? requests.shuttleDate :
+            travelType === 'rental' ? requests.rentalPickUpDate :
+              'YYYY-MM-DD';
+
+    let endDate =
+      travelType === 'uber' ? requests.uberDate :
+        travelType === 'flight' ? requests.flightReturnDate :
+          travelType === 'shuttle' ? requests.shuttleDate :
+            travelType === 'rental' ? requests.rentalReturnDate :
+              'YYYY-MM-DD';
+
+    let estimatedCost =
+      travelType === 'uber' ? requests.uberEstimatedPrice :
+        travelType === 'flight' ? requests.flightEstimatedTotalPrice :
+          travelType === 'shuttle' ? requests.shuttleTotalPrice :
+            travelType === 'rental' ? requests.rentalEstimatedPrice :
+              0; // Default value if not applicable
+
+    let additionalNotes =
+      travelType === 'uber' ? requests.uberNotes :
+        travelType === 'flight' ? requests.flightSpecialRequests :
+          travelType === 'shuttle' ? requests.shuttleSpecialRequests :
+            travelType === 'rental' ? "Good car in working condition needed." :
+              'No additional notes';
 
 
-    // })
+    try {
+      const response = await axios.post('http://localhost:3001/api/travel/request', {
+        destination: destination,
+        startDate: startDate,
+        endDate: endDate,
+        purpose: reasonForTravel,
+        transportationType: travelType,
+        accommodationRequired: false,
+        estimatedCost: estimatedCost,
+        additionalNotes: additionalNotes
+      })
+
+      toast.success("Travel request submitted successfully!");
+      navigate('/employee-home');
+
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error(`Request failed: ${error.response.data.message || 'An error occurred'}`);
+      } else {
+        toast.error("Request failed! Please try again later.");
+      }
+
+    }
+
   }
+
 
   useEffect(() => {
     // Set the initial travel type to Uber
@@ -199,7 +241,7 @@ const CreateTravelRequest = () => {
         <section className="flex flex-col grow  p-2 justify-between">
           <div className="flex flex-col gap-4">
             {/* date component */}
-            <Popover>
+            {/* <Popover>
               <PopoverTrigger asChild>
                 <Button
                   variant={"outline"}
@@ -220,10 +262,13 @@ const CreateTravelRequest = () => {
                   initialFocus
                 />
               </PopoverContent>
-            </Popover>
+            </Popover> */}
 
             {/* reason for travel */}
-            <Textarea className="min-h-[200px]" placeholder="Reason for travel" />
+            <Textarea
+              value={reasonForTravel}
+              onChange={(e) => setReasonForTravel(e.target.value)}
+              className="min-h-[200px]" placeholder="Reason for travel" />
 
             <hr />
 

@@ -18,6 +18,9 @@ type Travel = {
   status: string
 }
 
+
+
+
 const TravelStrip = ({ date, travelType, hotelPrice, travelPrice, hotelName, status }: Travel) => {
 
   const { blackBrown, mainBlue, redBrown } = useThemeStore();
