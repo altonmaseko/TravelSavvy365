@@ -1,8 +1,10 @@
 
-import RequestReviewUberCard from "./RequestReviewUberCard";
-import RequestReviewRentCarCard from "./RequetReviewRentCarCard";
 import { useHeader } from "../../states/useHeader";
 import { useEffect } from "react";
+import RequestReviewUberCard from "./RequestReviewUberCard";
+import RequestReviewFlightCard from "./RequestReviewFlightCard";
+import RequestReviewShuttleCard from "./RequestReviewShuttleCard";
+import RequestReviewRentalCard from "./RequestReviewRentalCard";
 
 const LineManagerHome = () => {
 
@@ -72,12 +74,78 @@ const LineManagerHome = () => {
 
 
 
-        <section className="flex flex-col gap-1">
-          <RequestReviewUberCard />
-          <RequestReviewRentCarCard />
-          <RequestReviewUberCard />
-          <RequestReviewRentCarCard />
-          <RequestReviewUberCard />
+        <section className="flex flex-row flex-wrap gap-4">
+          <RequestReviewUberCard request={{
+            id: 'abc123',
+            employeeName: 'Alton Maseko',
+            uberPickUpLocation: 'Rosebank Mall',
+            uberDropOffLocation: 'Wits Education Campus',
+            uberPickUpTime: '18:00',
+            uberRideType: 'Premium',
+            uberDate: new Date(),
+            uberNotes: 'Attending a conference.',
+            uberEstimatedPrice: 280,
+            requestDate: new Date(),
+          }} />
+
+          <RequestReviewFlightCard request={{
+            id: 'flight-002',
+            employeeName: 'Zanele Nkosi',
+            flightCompany: 'lift',
+            flightTripType: 'round-trip',
+            flightDepartureDate: new Date('2025-02-10'),
+            flightDepartureCity: 'Cape Town',
+            flightReturnCity: 'Johannesburg',
+            flightReturnDate: new Date('2025-02-14'),
+            flightDepartureTimePreference: 'afternoon',
+            flightReturnTimePreference: 'morning',
+            flightAdultPassengers: 2,
+            flightChildPassengers: 1,
+            flightInfantPassengers: 0,
+            flightClass: 'Business',
+            flightCheckedBags: 3,
+            flightSpecialRequests: 'Prefer window seats for all passengers.',
+            flightEstimatedTotalPrice: 6200,
+            requestDate: new Date('2025-01-10'),
+          }} />
+
+          <RequestReviewShuttleCard
+            request={{
+              id: 'sh-002',
+              employeeName: 'Thabo Mokoena',
+              shuttleCompany: 'greyhound',
+              shuttleDate: new Date('2025-01-05'),
+              shuttlePickUpTime: '10:00',
+              shuttlePickUpLocation: 'Pretoria',
+              shuttleDropOffLocation: 'Bloemfontein',
+              shuttlePassengers: 1,
+              shuttleLuggage: 2,
+              shuttleSpecialRequests: 'Quiet seat preferred',
+              shuttleTotalPrice: 450,
+              requestDate: new Date('2024-12-20'),
+            }}
+            onApprove={(id) => console.log('Approved:', id)}
+            onReject={(id, reason) => console.log('Rejected:', id, reason)}
+            onRequestInfo={(id, info) => console.log('Info Requested:', id, info)}
+          />
+
+
+          <RequestReviewRentalCard
+            request={{
+              id: 'rental-123',
+              employeeName: 'Sibongile Nkosi',
+              rentalCompany: 'hertz',
+              rentalPickUpDate: new Date('2025-01-02'),
+              rentalReturnDate: new Date('2025-01-08'),
+              rentalPickUpLocation: 'OR Tambo International Airport',
+              rentalCarType: 'SUV',
+              rentalEstimatedPrice: 1700,
+              requestDate: new Date('2024-12-30'),
+            }}
+            onApprove={(id) => console.log('Approved rental:', id)}
+            onReject={(id, reason) => console.log('Rejected rental:', id, reason)}
+            onRequestInfo={(id, info) => console.log('Requested rental info:', id, info)}
+          />
         </section>
 
 
