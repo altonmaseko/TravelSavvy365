@@ -289,5 +289,3 @@ const CreateTravelRequest = () => {
 
   )
 }
-
-export default CreateTravelRequest
